@@ -165,3 +165,12 @@ wc -l *clean_2* | awk '{print $1/4}'
 >187400
 
 ### 2. Ensamblaje *de novo* con *Spades*
+
+spades.py -m 3 -t 2 -1 virome_clean.1.fq -2 virome_clean.2.fq -o
+virome_spades_default
+
+spades.py --meta -m 3 -t 2 -1 virome_clean.1.fq -2 virome_clean.2.fq -o
+virome_spades_meta_33 -k33
+
+spades.py --meta -m 3 -t 2 -1 virome_clean.1.fq -2 virome_clean.2.fq -o
+virome_spades_meta_21 -k21
