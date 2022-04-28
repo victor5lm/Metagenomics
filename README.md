@@ -146,20 +146,22 @@ A continuación, contamos el número de lecturas restantes para cada tipo de fic
 ```
 wc -l *clean.* | awk '{print $1/4}'
 ```
->56474 56474 112948
+>56474 
+>56474 
+>112948
 
 ```
 wc -l *clean_1* | awk '{print $1/4}'
 ```
 >80761
-80761
-161522
+>80761
+>161522
 
 ```
 wc -l *clean_2* | awk '{print $1/4}'
 ```
 >93700
-93700
-187400
+>93700
+>187400
 
 ### 2. Ensamblaje *de novo* con *Spades*
