@@ -126,5 +126,40 @@ Tras la ejecución de estos comandos, obtenemos las siguientes gráficas de cali
 
 #### 1.6. Eliminación de las lecturas que alinean con el genoma humano o el de phiX174 con *Bowtie2*
 
+A continuación, para eliminar estas lecturas correspondientes a contaminaciones, vamos a usar Bowtie2. Para ello, vamos a construir primero un índice que contenga las secuencias de referencia a usar para el alineamiento, en este caso procedentes del ser humano y de phiX174. En primer lugar, ejectuamos estos comandos:
+```
+awk '{if(/^>/) printf("\n%s\n",$0); else printf("%s",$0)} END {printf("\n")}' < GCF_000001405.39_GRCh38.p13_cds_from_genomic.fna > HumanGenome_ONELINE.fasta
+awk '{if(/^>/) printf("\n%s\n",$0); else printf("%s",$0)} END {printf("\n")}' < phiX174.fasta > phiX174_genome_ONELINE.fasta
+cat HumanGenome_ONELINE.fasta phiX174_genome_ONELINE.fasta > Human-phiX174.fasta
+```
+Tras esto, generamos el índice para Bowtie2:
+```
+bowtie2-build Human-phiX174.fasta human-phix174
+```
+Finalmente, ejecutamos Bowtie2, usando este índice recién generado, para eliminar las contaminaciones en todos los ficheros .fq generados anteriormente tras la ejecución de *Trimmomatic* con distintos valores de SLIDINGWINDOW y MINLEN:
+```
+bowtie2 -x human-phix174 -1 virome_R1_qf_paired.fq -2 virome_R2_qf_paired.fq --un-conc virome_clean.fq -S tmp.sam
+bowtie2 -x human-phix174 -1 virome_R1_qf1_paired.fq -2 virome_R2_qf1_paired.fq --un-conc virome_clean_1.fq -S tmp.sam
+bowtie2 -x human-phix174 -1 virome_R1_qf2_paired.fq -2 virome_R2_qf2_paired.fq --un-conc virome_clean_2.fq -S tmp.sam
+```
+A continuación, contamos el número de lecturas restantes para cada tipo de fichero obtenido en función de dichos parámetros en *Trimmomatic*:
+```
+wc -l *clean.* | awk '{print $1/4}'
+```
+>56474 56474 112948
 
+```
+wc -l *clean_1* | awk '{print $1/4}'
+```
+>80761
+80761
+161522
 
+```
+wc -l *clean_2* | awk '{print $1/4}'
+```
+>93700
+93700
+187400
+
+### 2. Ensamblaje *de novo* con *Spades*
