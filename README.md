@@ -110,13 +110,21 @@ Tras la ejecución de estos comandos, obtenemos las siguientes gráficas de cali
 
 **virome_R1_qf1_paired.fq**
 
+![image](https://user-images.githubusercontent.com/98259577/165761454-8ab67688-f96e-4ca1-9c80-88e42b724004.png)
 
+**virome_R2_qf1_paired.fq**
+
+![image](https://user-images.githubusercontent.com/98259577/165761550-0d5d20a1-2b90-4273-898c-436b1dbccccf.png)
+
+**virome_R1_qf2_paired.fq**
+
+![image](https://user-images.githubusercontent.com/98259577/165761658-bec14acb-7de0-4386-ae88-59ec819b6084.png)
 
 **virome_R2_qf2_paired.fq**
 
-**virome_R1_qf1_paired.fq**
+![image](https://user-images.githubusercontent.com/98259577/165761720-ef4e39e4-c46e-4bf7-b1a5-79d3a34e7849.png)
 
-**virome_R2_qf2_paired.fq**
+#### 1.6. Eliminación de las lecturas que alinean con el genoma humano o el de phiX174 con *Bowtie2*
 
-#### 1.6. 
+
 
