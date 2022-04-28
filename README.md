@@ -91,12 +91,12 @@ trimmomatic PE -phred33 virome_R1.fastq virome_R2.fastq virome_R1_qf2_paired.fq 
 A continuación, vamos a ejecutar de nuevo *fastqc* para analizar la calidad de las lecturas, para los tres casos, tras la eliminación de los extremos de baja calidad y las lecturas cortas:
 ```
 mkdir virome_QF_quality
-fastqc virome_R1_qf_paired.fq -o virome_QF_Quality
-fastqc virome_R2_qf_paired.fq -o virome_QF_Quality
-fastqc virome_R1_qf1_paired.fq -o virome_QF_Quality
-fastqc virome_R2_qf1_paired.fq -o virome_QF_Quality
-fastqc virome_R1_qf2_paired.fq -o virome_QF_Quality
-fastqc virome_R2_qf2_paired.fq -o virome_QF_Quality
+fastqc virome_R1_qf_paired.fq -o virome_QF_quality
+fastqc virome_R2_qf_paired.fq -o virome_QF_quality
+fastqc virome_R1_qf1_paired.fq -o virome_QF_quality
+fastqc virome_R2_qf1_paired.fq -o virome_QF_quality
+fastqc virome_R1_qf2_paired.fq -o virome_QF_quality
+fastqc virome_R2_qf2_paired.fq -o virome_QF_quality
 ```
 Tras la ejecución de estos comandos, obtenemos las siguientes gráficas de calidad:
 
