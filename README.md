@@ -102,9 +102,15 @@ Tras la ejecución de estos comandos, obtenemos las siguientes gráficas de cali
 
 **virome_R1_qf_paired.fq**
 
+![image](https://user-images.githubusercontent.com/98259577/165759339-d00f26cb-5c5e-4e6a-93f0-c364a21c59e2.png)
+
 **virome_R2_qf_paired.fq**
 
+![image](https://user-images.githubusercontent.com/98259577/165759513-bf9e0e4a-f59e-4664-acd3-f083e84c0a38.png)
+
 **virome_R1_qf1_paired.fq**
+
+
 
 **virome_R2_qf2_paired.fq**
 
