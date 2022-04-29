@@ -166,11 +166,10 @@ wc -l *clean_2* | awk '{print $1/4}'
 
 ### 2. Ensamblaje *de novo* con *Spades*
 
-spades.py -m 3 -t 2 -1 virome_clean.1.fq -2 virome_clean.2.fq -o
-virome_spades_default
-
-spades.py --meta -m 3 -t 2 -1 virome_clean.1.fq -2 virome_clean.2.fq -o
-virome_spades_meta_33 -k33
-
-spades.py --meta -m 3 -t 2 -1 virome_clean.1.fq -2 virome_clean.2.fq -o
-virome_spades_meta_21 -k21
+A continuación, vamos a utilizar el programa *Spades* para el ensamblaje *de novo*. Para ello, ejecutaremos estos comandos, usando asimismo los parámetros -t (para indicar el número de *threads* a usar por el ensamblador), -m (para indicar la memoria que el programa puede usar) y -k (para indicar la longitud de los kmeros a usar durante el ensamblado), así como el *flag* --meta. Llevaremos a cabo, para los ficheros virome_clean.1.fq y virome_clean.2.fq, 4 ensamblajes distintos:
+```
+spades.py -m 3 -t 2 -1 virome_clean.1.fq -2 virome_clean.2.fq -o virome_spades_default
+spades.py --meta -m 3 -t 2 -1 virome_clean.1.fq -2 virome_clean.2.fq -o virome_spades_meta_77 -k77
+spades.py --meta -m 3 -t 2 -1 virome_clean.1.fq -2 virome_clean.2.fq -o virome_spades_meta_99 -k99
+spades.py --meta -m 3 -t 2 -1 virome_clean.1.fq -2 virome_clean.2.fq -o virome_spades_meta_127 -k127
+```
