@@ -201,14 +201,14 @@ spades.py --meta -m 3 -t 2 -1 virome_clean_1.1.fq -2 virome_clean_1.2.fq -o viro
 Tras esto, vamos a pasar todos los contigs/scaffolds a la misma carpeta, procedentes de los 4 ensamblajes, para posteriormente cargarlos en QUAST.
 ```
 mkdir quast_1
-ln -rs ./virome_spades_default_1/contigs.fasta ./quast/contigs_default_1.fasta
-ln -rs ./virome_spades_default_1/scaffolds.fasta ./quast/scaffolds_default_1.fasta
-ln -rs ./virome_spades_meta_77_1/contigs.fasta ./quast/contigs_meta_77_1.fasta
-ln -rs ./virome_spades_meta_77_1/scaffolds.fasta ./quast/scaffolds_meta_77_1.fasta
-ln -rs ./virome_spades_meta_99_1/contigs.fasta ./quast/contigs_meta_99_1.fasta
-ln -rs ./virome_spades_meta_99_1/scaffolds.fasta ./quast/scaffolds_meta_99_1.fasta
-ln -rs ./virome_spades_meta_127_1/contigs.fasta ./quast/contigs_meta_127_1.fasta
-ln -rs ./virome_spades_meta_127_1/scaffolds.fasta ./quast/scaffolds_meta_127_1.fasta
+ln -rs ./virome_spades_default_1/contigs.fasta ./quast_1/contigs_default_1.fasta
+ln -rs ./virome_spades_default_1/scaffolds.fasta ./quast_1/scaffolds_default_1.fasta
+ln -rs ./virome_spades_meta_77_1/contigs.fasta ./quast_1/contigs_meta_77_1.fasta
+ln -rs ./virome_spades_meta_77_1/scaffolds.fasta ./quast_1/scaffolds_meta_77_1.fasta
+ln -rs ./virome_spades_meta_99_1/contigs.fasta ./quast_1/contigs_meta_99_1.fasta
+ln -rs ./virome_spades_meta_99_1/scaffolds.fasta ./quast_1/scaffolds_meta_99_1.fasta
+ln -rs ./virome_spades_meta_127_1/contigs.fasta ./quast_1/contigs_meta_127_1.fasta
+ln -rs ./virome_spades_meta_127_1/scaffolds.fasta ./quast_1/scaffolds_meta_127_1.fasta
 ```
 >INSERTAR FOTO DE LOS RESULTADOS
 
@@ -222,13 +222,13 @@ spades.py --meta -m 3 -t 2 -1 virome_clean_2.1.fq -2 virome_clean_2.2.fq -o viro
 Tras esto, vamos a pasar todos los contigs/scaffolds a la misma carpeta, procedentes de los 4 ensamblajes, para posteriormente cargarlos en QUAST.
 ```
 mkdir quast_2
-ln -rs ./virome_spades_default_2/contigs.fasta ./quast/contigs_default_2.fasta
-ln -rs ./virome_spades_default_2/scaffolds.fasta ./quast/scaffolds_default_2.fasta
-ln -rs ./virome_spades_meta_77_2/contigs.fasta ./quast/contigs_meta_77_2.fasta
-ln -rs ./virome_spades_meta_77_2/scaffolds.fasta ./quast/scaffolds_meta_77_2.fasta
-ln -rs ./virome_spades_meta_99_2/contigs.fasta ./quast/contigs_meta_99_2.fasta
-ln -rs ./virome_spades_meta_99_2/scaffolds.fasta ./quast/scaffolds_meta_99_2.fasta
-ln -rs ./virome_spades_meta_127_2/contigs.fasta ./quast/contigs_meta_127_2.fasta
-ln -rs ./virome_spades_meta_127_2/scaffolds.fasta ./quast/scaffolds_meta_127_2.fasta
+ln -rs ./virome_spades_default_2/contigs.fasta ./quast_2/contigs_default_2.fasta
+ln -rs ./virome_spades_default_2/scaffolds.fasta ./quast_2/scaffolds_default_2.fasta
+ln -rs ./virome_spades_meta_77_2/contigs.fasta ./quast_2/contigs_meta_77_2.fasta
+ln -rs ./virome_spades_meta_77_2/scaffolds.fasta ./quast_2/scaffolds_meta_77_2.fasta
+ln -rs ./virome_spades_meta_99_2/contigs.fasta ./quast_2/contigs_meta_99_2.fasta
+ln -rs ./virome_spades_meta_99_2/scaffolds.fasta ./quast_2/scaffolds_meta_99_2.fasta
+ln -rs ./virome_spades_meta_127_2/contigs.fasta ./quast_2/contigs_meta_127_2.fasta
+ln -rs ./virome_spades_meta_127_2/scaffolds.fasta ./quast_2/scaffolds_meta_127_2.fasta
 ```
 >INSERTAR FOTO DE LOS RESULTADOS
