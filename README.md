@@ -228,4 +228,7 @@ ln -rs ./virome_spades_meta_99_2/scaffolds.fasta ./quast_2/scaffolds_meta_99_2.f
 ln -rs ./virome_spades_meta_127_2/contigs.fasta ./quast_2/contigs_meta_127_2.fasta
 ln -rs ./virome_spades_meta_127_2/scaffolds.fasta ./quast_2/scaffolds_meta_127_2.fasta
 ```
->INSERTAR FOTO DE LOS RESULTADOS
+![image](https://user-images.githubusercontent.com/98259577/166067785-ddb7789c-2868-4698-87c6-db1901d62024.png)
+
+![image](https://user-images.githubusercontent.com/98259577/166067850-b467fddb-8a77-4ec5-867e-21046382ffe4.png)
+
