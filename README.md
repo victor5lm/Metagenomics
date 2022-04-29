@@ -167,9 +167,68 @@ wc -l *clean_2* | awk '{print $1/4}'
 ### 2. Ensamblaje *de novo* con *Spades*
 
 A continuación, vamos a utilizar el programa *Spades* para el ensamblaje *de novo*. Para ello, ejecutaremos estos comandos, usando asimismo los parámetros -t (para indicar el número de *threads* a usar por el ensamblador), -m (para indicar la memoria que el programa puede usar) y -k (para indicar la longitud de los kmeros a usar durante el ensamblado), así como el *flag* --meta. Llevaremos a cabo, para los ficheros virome_clean.1.fq y virome_clean.2.fq, 4 ensamblajes distintos:
+
+**Ficheros virome_clean.1.fq y virome_clean.2.fq**
 ```
 spades.py -m 3 -t 2 -1 virome_clean.1.fq -2 virome_clean.2.fq -o virome_spades_default
 spades.py --meta -m 3 -t 2 -1 virome_clean.1.fq -2 virome_clean.2.fq -o virome_spades_meta_77 -k77
 spades.py --meta -m 3 -t 2 -1 virome_clean.1.fq -2 virome_clean.2.fq -o virome_spades_meta_99 -k99
 spades.py --meta -m 3 -t 2 -1 virome_clean.1.fq -2 virome_clean.2.fq -o virome_spades_meta_127 -k127
 ```
+Tras esto, vamos a pasar todos los contigs/scaffolds a la misma carpeta, procedentes de los 4 ensamblajes, para posteriormente cargarlos en QUAST.
+```
+mkdir quast
+ln -rs ./virome_spades_default/contigs.fasta ./quast/contigs_default.fasta
+ln -rs ./virome_spades_default/scaffolds.fasta ./quast/scaffolds_default.fasta
+ln -rs ./virome_spades_meta_77/contigs.fasta ./quast/contigs_meta_77.fasta
+ln -rs ./virome_spades_meta_77/scaffolds.fasta ./quast/scaffolds_meta_77.fasta
+ln -rs ./virome_spades_meta_99/contigs.fasta ./quast/contigs_meta_99.fasta
+ln -rs ./virome_spades_meta_99/scaffolds.fasta ./quast/scaffolds_meta_99.fasta
+ln -rs ./virome_spades_meta_127/contigs.fasta ./quast/contigs_meta_127.fasta
+ln -rs ./virome_spades_meta_127/scaffolds.fasta ./quast/scaffolds_meta_127.fasta
+```
+>INSERTAR FOTO DE LOS RESULTADOS
+
+A continuación, vamos a hacer analizar los resultados para el resto de archivos obtenidos para las otras dos ejecuciones de *Trimmomatic* con distintos valores de los parámetros SLIDINGWINDOW y MINLEN:
+
+**Ficheros virome_clean_1.1.fq y virome_clean_1.2.fq**
+```
+spades.py -m 3 -t 2 -1 virome_clean_1.1.fq -2 virome_clean_1.2.fq -o virome_spades_default_1
+spades.py --meta -m 3 -t 2 -1 virome_clean_1.1.fq -2 virome_clean_1.2.fq -o virome_spades_meta_77_1 -k77
+spades.py --meta -m 3 -t 2 -1 virome_clean_1.1.fq -2 virome_clean_1.2.fq -o virome_spades_meta_99_1 -k99
+spades.py --meta -m 3 -t 2 -1 virome_clean_1.1.fq -2 virome_clean_1.2.fq -o virome_spades_meta_127_1 -k127
+```
+Tras esto, vamos a pasar todos los contigs/scaffolds a la misma carpeta, procedentes de los 4 ensamblajes, para posteriormente cargarlos en QUAST.
+```
+mkdir quast
+ln -rs ./virome_spades_default_1/contigs.fasta ./quast/contigs_default_1.fasta
+ln -rs ./virome_spades_default_1/scaffolds.fasta ./quast/scaffolds_default_1.fasta
+ln -rs ./virome_spades_meta_77_1/contigs.fasta ./quast/contigs_meta_77_1.fasta
+ln -rs ./virome_spades_meta_77_1/scaffolds.fasta ./quast/scaffolds_meta_77_1.fasta
+ln -rs ./virome_spades_meta_99_1/contigs.fasta ./quast/contigs_meta_99_1.fasta
+ln -rs ./virome_spades_meta_99_1/scaffolds.fasta ./quast/scaffolds_meta_99_1.fasta
+ln -rs ./virome_spades_meta_127_1/contigs.fasta ./quast/contigs_meta_127_1.fasta
+ln -rs ./virome_spades_meta_127_1/scaffolds.fasta ./quast/scaffolds_meta_127_1.fasta
+```
+>INSERTAR FOTO DE LOS RESULTADOS
+
+**Ficheros virome_clean_2.1.fq y virome_clean_2.2.fq**
+```
+spades.py -m 3 -t 2 -1 virome_clean_2.1.fq -2 virome_clean_2.2.fq -o virome_spades_default_2
+spades.py --meta -m 3 -t 2 -1 virome_clean_2.1.fq -2 virome_clean_2.2.fq -o virome_spades_meta_77_2 -k77
+spades.py --meta -m 3 -t 2 -1 virome_clean_2.1.fq -2 virome_clean_2.2.fq -o virome_spades_meta_99_2 -k99
+spades.py --meta -m 3 -t 2 -1 virome_clean_2.1.fq -2 virome_clean_2.2.fq -o virome_spades_meta_127_2 -k127
+```
+Tras esto, vamos a pasar todos los contigs/scaffolds a la misma carpeta, procedentes de los 4 ensamblajes, para posteriormente cargarlos en QUAST.
+```
+mkdir quast
+ln -rs ./virome_spades_default_2/contigs.fasta ./quast/contigs_default_2.fasta
+ln -rs ./virome_spades_default_2/scaffolds.fasta ./quast/scaffolds_default_2.fasta
+ln -rs ./virome_spades_meta_77_2/contigs.fasta ./quast/contigs_meta_77_2.fasta
+ln -rs ./virome_spades_meta_77_2/scaffolds.fasta ./quast/scaffolds_meta_77_2.fasta
+ln -rs ./virome_spades_meta_99_2/contigs.fasta ./quast/contigs_meta_99_2.fasta
+ln -rs ./virome_spades_meta_99_2/scaffolds.fasta ./quast/scaffolds_meta_99_2.fasta
+ln -rs ./virome_spades_meta_127_2/contigs.fasta ./quast/contigs_meta_127_2.fasta
+ln -rs ./virome_spades_meta_127_2/scaffolds.fasta ./quast/scaffolds_meta_127_2.fasta
+```
+>INSERTAR FOTO DE LOS RESULTADOS
