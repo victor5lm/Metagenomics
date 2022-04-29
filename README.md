@@ -184,7 +184,7 @@ ln -rs ./virome_spades_meta_99/scaffolds.fasta ./quast/scaffolds_meta_99.fasta
 ln -rs ./virome_spades_meta_127/contigs.fasta ./quast/contigs_meta_127.fasta
 ln -rs ./virome_spades_meta_127/scaffolds.fasta ./quast/scaffolds_meta_127.fasta
 ```
->INSERTAR FOTO DE LOS RESULTADOS
+![image](https://user-images.githubusercontent.com/98259577/166061793-4c5e9218-a8f2-49b1-9ebc-c0d81fe1db12.png)
 
 A continuación, vamos a hacer analizar los resultados para el resto de archivos obtenidos para las otras dos ejecuciones de *Trimmomatic* con distintos valores de los parámetros SLIDINGWINDOW y MINLEN:
 
