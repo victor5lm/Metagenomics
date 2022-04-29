@@ -184,7 +184,10 @@ ln -rs ./virome_spades_meta_99/scaffolds.fasta ./quast/scaffolds_meta_99.fasta
 ln -rs ./virome_spades_meta_127/contigs.fasta ./quast/contigs_meta_127.fasta
 ln -rs ./virome_spades_meta_127/scaffolds.fasta ./quast/scaffolds_meta_127.fasta
 ```
-![image](https://user-images.githubusercontent.com/98259577/166061793-4c5e9218-a8f2-49b1-9ebc-c0d81fe1db12.png)
+![image](https://user-images.githubusercontent.com/98259577/166062721-a6297d1b-5eb3-4203-81f5-5fb5e3f49f14.png)
+
+![image](https://user-images.githubusercontent.com/98259577/166062786-a194788d-af56-423b-b217-8cb47f7149e5.png)
+
 
 A continuación, vamos a hacer analizar los resultados para el resto de archivos obtenidos para las otras dos ejecuciones de *Trimmomatic* con distintos valores de los parámetros SLIDINGWINDOW y MINLEN:
 
@@ -204,7 +207,10 @@ ln -rs ./virome_spades_meta_99_1/scaffolds.fasta ./quast_1/scaffolds_meta_99_1.f
 ln -rs ./virome_spades_meta_127_1/contigs.fasta ./quast_1/contigs_meta_127_1.fasta
 ln -rs ./virome_spades_meta_127_1/scaffolds.fasta ./quast_1/scaffolds_meta_127_1.fasta
 ```
->INSERTAR FOTO DE LOS RESULTADOS
+![image](https://user-images.githubusercontent.com/98259577/166063696-8dc2f0aa-c3f1-4111-9074-3bea65292a01.png)
+
+![image](https://user-images.githubusercontent.com/98259577/166064254-390ae184-6568-4f1a-a807-3f0dce3cb77f.png)
+
 
 **Ficheros virome_clean_2.1.fq y virome_clean_2.2.fq**
 ```
