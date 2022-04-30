@@ -261,3 +261,10 @@ Analizando la tabla aportada por el report de QUAST, podemos determinar cuál de
 ![image](https://user-images.githubusercontent.com/98259577/166113454-7083f334-2cd3-4002-a942-ced2026d1140.png)
 
 Analizando estas gráficas, podremos ver que, para la gráfica Nx, N50 es mayor para k=127. Para la otra gráfica, podemos apreciar que, para k=127, el 1º contig es el mayor y el número de contigs es menor para este valor de k.
+
+### 3. Conclusión final
+
+A modo de resumen, hemos partido de datos metagenómicos de un virus con el fin de realizar un ensamblado *de novo*. En concreto, las lecturas obtenidas tras la secuenciación se han pre-procesado de tres formas distintas en base a los distintos parámetros del programa *Trimmomatic*. Para cada uno de los resultados obtenidos, hemos realizado el ensamblado del genoma, a su vez, de tres formas diferentes, por medio del programa SPAdes, en base a la longitud del kmero escogida. 
+
+En los 3 casos, hemos podido comprobar que, con **k=127**, el ensamblado es mucho **mejor** que con otros valores de k, comparando parámetros como N50, L50, N75, L75, el tamaño del mayor contig, el número de contigs, etc. Si comparamos, asimismo, estos tres mejores ensamblados entre sí, podemos comprobar que, habiendo realizado el control de calidad con *Trimmomatic* con los parámetros SLIDINGWINDOW: y MINLEN:, este ensamblado es mejor en comparación.
+
