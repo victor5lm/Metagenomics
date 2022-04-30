@@ -256,8 +256,8 @@ Cargamos estos ficheros en QUAST, obteniendo el siguiente report:
 
 Analizando la tabla aportada por el report de QUAST, podemos determinar cuál de los 3 ensamblajes es mejor para estos ficheros, obtenidos tras ejecutar *Trimmomatic* con los parámetros SLIDINGWINDOW:4:20 y MINLEN:70. Si nos fijamos en el número de contigs obtenidos para k=77, k=99 y k=127 (columnas 2, 3 y 4), podemos apreciar que el ensamblaje con el menor número de contigs es el obtenido con k=127. Además, el mayor contig obtenido también es con k=127. Asimismo, N50 y N75 son mayores para k=127, así como L50 y L75 son menores para dicho valor de k. Todos estos hechos indican que, para este caso, el mejor ensamblaje es con un tamaño de kmero igual a 127. Esto se fundamenta en que, a menor número de contigs y mayor tamaño del más grande de ellos, más sencillo resulta ensamblar el genoma del virus que estamos analizando en cuestión. Por otro lado, hemos de recordar la definición de N50: longitud para la cual los contigs de dicha longitud o mayor cubren el 50% del ensamblado. Naturalmente, cuanto mayor sea N50, mejor será el ensamblado, porque se necesitarán menos contigs para reconstruir el 50% del genoma. Por su parte, siendo L50 el número de contigs mínimo necesario para cubrir dicho 50%, cuanto menor sea éste, mejor. Es en base a esto por lo que el ensamblado con k=127 resulta ser más apropiado. Esto también puede apreciarse en las siguientes gráficas de QUAST:
 
-![image](https://user-images.githubusercontent.com/98259577/166113323-b6a54b15-1f40-4a8b-be7b-7859b4353a33.png)
+![image](https://user-images.githubusercontent.com/98259577/166113448-8f995bf8-589d-447e-8a67-6d6ea6b7102d.png)
 
-![image](https://user-images.githubusercontent.com/98259577/166113337-1c220330-018d-4b87-be3d-6f5a01461f0a.png)
+![image](https://user-images.githubusercontent.com/98259577/166113454-7083f334-2cd3-4002-a942-ced2026d1140.png)
 
 Analizando estas gráficas, podremos ver que, para la gráfica Nx, N50 es mayor para k=127. Para la otra gráfica, podemos apreciar que, para k=127, el 1º contig es el mayor y el número de contigs es menor para este valor de k.
