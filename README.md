@@ -186,11 +186,13 @@ ln -rs ./virome_spades_meta_127/scaffolds.fasta ./quast/scaffolds_meta_127.fasta
 ```
 Cargamos estos ficheros en QUAST, obteniendo el siguiente report:
 
+**LINK:** http://cab.cc.spbu.ru/quast/reports/29_Apr_2022_16:46:36_462922_1st-trimmomatic-minlen-149-/report.html
+
 ![image](https://user-images.githubusercontent.com/98259577/166062721-a6297d1b-5eb3-4203-81f5-5fb5e3f49f14.png)
 
 ![image](https://user-images.githubusercontent.com/98259577/166062786-a194788d-af56-423b-b217-8cb47f7149e5.png)
 
-Analizando la tabla aportada por el report de QUAST, podemos determinar cuál de los 3 ensamblajes es mejor para estos ficheros, obtenidos tras ejecutar *Trimmomatic* con los parámetros SLIDINGWINDOW:4:20 y MINLEN:149. Si nos fijamos en el número de contigs obtenidos para k=77, k=99 y k=127 (columnas 2, 3 y 4), podemos apreciar que el ensamblaje con el menor número de contigs es el obtenido con k=127. Además, el mayor contig obtenido también es con k=127. Asimismo, N50 y N75 son mayores para k=127, así como L50 y L75 son menores para dicho valor de k. Todos estos hechos indican que, para este caso, el mejor ensamblaje es con un tamaño de kmero igual a 127. Esto se fundamenta en que, a menor número de contigs y mayor tamaño del más grande de ellos, más sencillo resulta ensamblar el genoma del virus que estamos analizando en cuestión. Por otro lado, hemos de recordar la definición de N50: longitud para la cual los contigs de dicha longitud o mayor cubren el 50% del ensamblado. Naturalmente, cuanto mayor sea N50, mejor será el ensamblado, porque se necesitarán menos contigs para reconstruir el 50% del genoma. Por su parte, siendo L50 el número de contigs mínimo necesario para cubrir dicho 50%, cuanto menor sea éste, mejor. Es en base a esto por lo que el ensamblado con k=127 resulta ser más apropiado. Esto también puede apreciarse en las siguientes gráficas de QUAST:
+Analizando la tabla aportada por el report de QUAST, podemos determinar cuál de los 3 ensamblajes es mejor para estos ficheros, obtenidos tras ejecutar *Trimmomatic* con los parámetros SLIDINGWINDOW:4:20 y MINLEN:149. Si nos fijamos en el número de contigs obtenidos para k=77, k=99 y k=127 (columnas 2, 3 y 4), podemos apreciar que el ensamblaje con el menor número de contigs es el obtenido con k=127. Además, el mayor contig obtenido también es con k=127. Asimismo, N50 y N75 son mayores para k=127, así como L50 y L75 son menores para dicho valor de k (N75 y L75 son relativos al 75% del ensamblado). Todos estos hechos indican que, para este caso, el mejor ensamblaje es con un tamaño de kmero igual a 127. Esto se fundamenta en que, a menor número de contigs y mayor tamaño del más grande de ellos, más sencillo resulta ensamblar el genoma del virus que estamos analizando en cuestión. Por otro lado, hemos de recordar la definición de N50: longitud para la cual los contigs de dicha longitud o mayor cubren el 50% del ensamblado. Naturalmente, cuanto mayor sea N50, mejor será el ensamblado, porque se necesitarán menos contigs para reconstruir el 50% del genoma. Por su parte, siendo L50 el número de contigs mínimo necesario para cubrir dicho 50%, cuanto menor sea éste, mejor. Es en base a esto por lo que el ensamblado con k=127 resulta ser más apropiado. Esto también puede apreciarse en las siguientes gráficas de QUAST:
 
 ![image](https://user-images.githubusercontent.com/98259577/166112500-713f1565-e486-4a71-b070-ebafc71c7dab.png)
 
@@ -217,6 +219,8 @@ ln -rs ./virome_spades_meta_127_1/contigs.fasta ./quast_1/contigs_meta_127_1.fas
 ln -rs ./virome_spades_meta_127_1/scaffolds.fasta ./quast_1/scaffolds_meta_127_1.fasta
 ```
 Cargamos estos ficheros en QUAST, obteniendo el siguiente report:
+
+**LINK:** http://cab.cc.spbu.ru/quast/reports/29_Apr_2022_16:47:30_283421_2nd-trimmomatic-minlen-70-/report.html
 
 ![image](https://user-images.githubusercontent.com/98259577/166063696-8dc2f0aa-c3f1-4111-9074-3bea65292a01.png)
 
@@ -250,6 +254,8 @@ ln -rs ./virome_spades_meta_127_2/scaffolds.fasta ./quast_2/scaffolds_meta_127_2
 ```
 Cargamos estos ficheros en QUAST, obteniendo el siguiente report:
 
+**LINK:** http://cab.cc.spbu.ru/quast/reports/29_Apr_2022_16:48:26_624564_3rd-trimmomatic-minlen-36-/report.html
+
 ![image](https://user-images.githubusercontent.com/98259577/166067785-ddb7789c-2868-4698-87c6-db1901d62024.png)
 
 ![image](https://user-images.githubusercontent.com/98259577/166067850-b467fddb-8a77-4ec5-867e-21046382ffe4.png)
@@ -266,5 +272,8 @@ Analizando estas gráficas, podremos ver que, para la gráfica Nx, N50 es mayor 
 
 A modo de resumen, hemos partido de datos metagenómicos de un virus con el fin de realizar un ensamblado *de novo*. En concreto, las lecturas obtenidas tras la secuenciación se han pre-procesado de tres formas distintas en base a los distintos parámetros del programa *Trimmomatic*. Para cada uno de los resultados obtenidos, hemos realizado el ensamblado del genoma, a su vez, de tres formas diferentes, por medio del programa SPAdes, en base a la longitud del kmero escogida. 
 
-En los 3 casos, hemos podido comprobar que, con **k=127**, el ensamblado es mucho **mejor** que con otros valores de k, comparando parámetros como N50, L50, N75, L75, el tamaño del mayor contig, el número de contigs, etc. Si comparamos, asimismo, estos tres mejores ensamblados entre sí, podemos comprobar que, habiendo realizado el control de calidad con *Trimmomatic* con los parámetros SLIDINGWINDOW: y MINLEN:, este ensamblado es mejor en comparación.
+En los 3 casos, hemos podido comprobar que, con **k=127**, el ensamblado es mucho **mejor** que con otros valores de k, comparando parámetros como N50, L50, N75, L75, el tamaño del mayor contig, el número de contigs, etc. Si comparamos, asimismo, estos tres mejores ensamblados entre sí, podemos comprobar que, habiendo realizado el control de calidad con *Trimmomatic* con los parámetros SLIDINGWINDOW:4:20 y MINLEN:149, este ensamblado es el mejor.
 
+Concretamente, podemos apreciar que, si bien el N50 no es el mayor de todos para este ensamblado, L50 y L75 sí que son los mejores (es decir, los más bajos en comparación). Aunque buscamos que N50 sea lo más alto posible, al fin y al cabo también buscamos que L50 sea lo más bajo posible, ya que es el mínimo número de contigs que cubren la mitad del ensamblado. Por eso, aunque N50 no sea el más alto para este ensamblado en comparación con los otros dos, L50 y L75 (es el mínimo número de contigs que cubren el 75% del ensamblado) sí que son los más bajos, y en definitiva esto resulta ventajoso al reconstruir el genoma de este virus.
+
+**En conclusión, el mejor ensamblado ha demostrado ser el obtenido tras ejecutar *Trimmomatic* con SLIDINGWINDOW:4:20 y MINLEN:149, además de SPAdes con el *flag* --meta y k=127.**
