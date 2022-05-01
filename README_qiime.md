@@ -60,6 +60,14 @@ Tal y como puede apreciarse, los valores de estos parámetros son correspondient
 
 Este será el procedimiento que sigamos para determinar qué parámetros usó el profesor al ejecutar aquellos comandos que dependan de parámetros determinados.
 
+Por otro lado, y antes de continuar, conviene prestar atención a los valores indicados por el profesor para dichos parámetros, y analizar por qué han sido considerados éstos. Por un lado, con los parámetros --p-trim-left-f y --p-trim-left-r, hemos indicado a qiime2 que elimine las primeras 19 y 20 bases, respectivamente, de los extremos 5' de las lecturas *forward* y *reverse*. Esto se debe a que, si consultamos la pestaña "Interactive Quality Plot" de paired-end-demux.qzv, podremos ver que estas 19-20 primeras bases de dichos extremos de las lecturas presentan algo menos de calidad que el resto de las lecturas; de ahí que sean eliminadas. 
+
+Por otra parte, con los parámetros --p-trunc-len-f y --p-trunc-len-r, hemos indicado a qiime2 que tome, como posiciones a partir de las cuales eliminar las lecturas *forward* y *reverse*, 240 y 155, respectivamente. Esto se debe a que, consultando dicha pestaña de paired-end-demux.qzv, la calidad de las lecturas comienza a decrecer considerablemente a partir de dichas lecturas en posición 240 y 155, respectivamente; de ahí que se tomen estos valores para dichos parámetros. Todo esto se puede comprobar a continuación:
+
+![image](https://user-images.githubusercontent.com/98259577/166160724-874594af-97f0-49a2-ac37-d9c9c42c0c1d.png)
+
+![image](https://user-images.githubusercontent.com/98259577/166160737-a770eb21-53f2-43c1-8fce-fcff07146b75.png)
+
 ### 3. Importamos los datos de DADA2 a Qiime2
 
 Obtenidos los ficheros rep-seqs.qza, table.qza y stats.qza tras la ejecución de DADA2, vamos a importar estos datos a qiime2. Para ello, ejecutaremos los siguientes comandos en qiime2 a partir de los tres ficheros obtenidos tras la ejecución del protocolo del fichero dada.rmd aportado por el profesor, los cuales son rep-seqs.fna, seqtab-nochim y stats.txt:
