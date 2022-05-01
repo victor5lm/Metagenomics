@@ -1,11 +1,11 @@
-# *Qiime2 homework*
+# *QIIME2 homework*
 ## Víctor Manuel López Molina
 ## Fecha: 20/05/2022
 ## Ejercicio
 
 En este ejercicio de la asignatura, dados una serie de ficheros y carpetas proporcionados por el profesor, vamos a redactar un informe en el que se muestren los comandos, con sus correspondientes parámetros, ejecutados por el profesor para obtener dichos archivos. Adicionalmente, junto con este informe, se rellenará el cuestionario disponible en Moodle. 
 
-## Informe
+## INFORME
 
 ### 1. Importamos los datos en qiime2
 
@@ -52,7 +52,7 @@ Donde:
 * --o-table table.qza: nombre del fichero correspondiente a la tabla de abundancias de cada ASV por muestra.
 * --o-denoising-stats stats.qza: nombre del fichero que contiene información sobre la evolución del proceso.
 * --p-n-threads 7: número de procesos llevados a cabo en paralelo.
-* --p-n-reads-learn 1921748: número de secuencias usadas para determinar la tasa de error (en este caso, 1921748 es el 25% del número total de secuencias, 7686994, siendo un porcentaje adecuado).
+* --p-n-reads-learn 1921748: número de secuencias usadas para determinar la tasa de error (en este caso, 1921748 es el 25% del número total de secuencias, 7686994, siendo éste un porcentaje adecuado).
 
 Tal y como puede apreciarse, los valores de estos parámetros son correspondientes a los usados por el profesor cuando ejecutó este comando; esto es algo que podemos comprobar al abrir, por ejemplo, rep-seqs.qza en view.qiime2.org y pinchar en la pestaña "Provenance":
 
@@ -276,9 +276,9 @@ qiime diversity core-metrics-phylogenetic --i-table table_sample.qza \
                                           --p-n-jobs-or-threads 2 \
                                           --output-dir diversity_sample
 ```
-Para la ejecución de este comando, el profesor ha usado --p-sampling-depth 101046. Este parámetro es fundamental para este paso ya que la mayoría de las medidas de diversidad son sensibles a las diferencias existentes en la profundidad de secuenciación de las muestras, por lo que, por medio de este parámetro, todos los grupos acaban teniendo el mismo número de counts, en este caso, 101046 (es una forma de normalización). Si el número total de counts de un grupo es menor a dicho valor, el grupo no se tiene en cuenta para los análisis de diversidad, por lo que lo ideal es tomar un valor que sea lo más alto posible pero que excluya el menor número de, en este caso, grupos posible. Por tanto, si echamos un vistazo de nuevo a la pestaña "Interactive Sample Detail" del fichero table_sample.qzv, veremos que el grupo que tiene menor número de counts tiene 101046 counts; de ahí que el profesor haya escogido 101046 para el parámetro --p-sampling-depth, para así evitar la pérdida de grupos y, por consiguiente, de información, a la hora de determinar las diversidades por medio de diversas medidas.
+Para la ejecución de este comando, el profesor ha usado --p-sampling-depth 101046. Este parámetro es fundamental para este paso ya que la mayoría de las medidas de diversidad son sensibles a las diferencias existentes en la profundidad de secuenciación de las muestras, por lo que, por medio de este parámetro, todos los grupos acaban teniendo el mismo número de counts, en este caso, 101046 (es una forma de normalización). Si el número total de counts de un grupo es menor a dicho valor, el grupo no se tiene en cuenta para los análisis de diversidad, por lo que lo ideal es tomar un valor que sea lo más alto posible pero que excluya el menor número de, en este caso, grupos posible. Por tanto, si echamos un vistazo a la pestaña "Interactive Sample Detail" del fichero table_sample.qzv, veremos que el grupo que tiene menor número de counts tiene 101046 counts; de ahí que el profesor haya escogido 101046 para el parámetro --p-sampling-depth, para así evitar la pérdida de grupos y, por consiguiente, de información, a la hora de determinar las diversidades por medio de diversas medidas.
 
-Los índices obtenidos, guardados en la carpeta diversity, pueden ser visualizados y consultados en view.qiime2.org.
+Los índices obtenidos, guardados en la carpeta diversity_sample, pueden ser visualizados y consultados en view.qiime2.org.
 
 Finalmente, también podemos analizar la composición de las muestras usando PERMANOVA por medio del siguiente comando. Éste evaluará si las distancias entre las muestras dentro de un mismo grupo son más similares entre sí que entre éstas y otras muestras de otros grupos:
 ```
@@ -288,7 +288,6 @@ qiime diversity beta-group-significance --i-distance-matrix diversity/weighted_u
                                         --o-visualization diversity/weighted_unifrac_condition_significance.qzv \
                                         --p-method permanova \
                                         --p-pairwise
-
 ```
 Por medio del parámetro --p-pairwise, llevamos a cabo tests *pairwise* que permiten determinar qué pares de grupos específicos difieren de otros, si los hay. Este comando se ha llevado a cabo específicamente para la columna "Day_Temp" de los metadatos para agilizar el proceso. Por otro lado, este comando de qiime2 presenta otro parámetro denominado --p-permutations, correspondiente al número de permutaciones para comuputar el p-valor. Al abrir el fichero weighted_unifrac_condition_significance.qzv en view.qiime2.org y pinchar en la pestaña "Provenance", podemos comprobar que el valor de este parámetro es 999, que es el valor por defecto, de ahí que no venga incluido en el comando expuesto en la celda superior a este párrafo.
 
