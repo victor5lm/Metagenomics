@@ -142,4 +142,92 @@ qiime rescript filter-seqs-length-by-taxon \
       --o-filtered-seqs silva-138-ssu-nr99-seqs-filt.qza \
       --o-discarded-seqs silva-138-ssu-nr99-seqs-discard.qza
 ```
-Finalmente, eliminamos también aquellas secuencias que sean idénticas 
+Finalmente, eliminamos también aquellas secuencias que sean idénticas pero con distinta taxonomía, con el fin de evitar asignaciones ambiguas:
+```
+qiime rescript dereplicate \
+      --i-sequences silva-138-ssu-nr99-seqs-filt.qza  \
+      --i-taxa silva-138-ssu-nr99-tax.qza \
+      --p-rank-handles 'silva' \
+      --p-mode 'uniq' \
+      --o-dereplicated-sequences silva-138-ssu-nr99-seqs-derep-uniq.qza \
+      --o-dereplicated-taxa silva-138-ssu-nr99-tax-derep-uniq.qza
+```
+Los ficheros silva-138-ssu-nr99-seqs-derep-uniq.qza y silva-138-ssu-nr99-tax-derep-uniq.qza son equivalentes a los ficheros 85_otus.qza y ref-taxonomy.qza aportados por el profesor.
+
+___
+
+Tras estos pasos, vamos a importar la base de datos Greegenes 85% (las secuencias están agrupadas en base a una homología del 85%), con el fin de acelerar el proceso de asignación taxonómica, si bien lo más apropiado habría sido usar la base de datos 99% SILVA.
+
+Para ello, importamos las secuencias en el artefacto correspondiente, así como los datos relativos a la asignación taxonómica:
+```
+qiime tools import \
+      --type 'FeatureData[Sequence]' \
+      --input-path 85_otus.fasta \
+      --output-path 85_otus.qza
+      
+qiime tools import \
+     --type 'FeatureData[Taxonomy]' \
+     --input-format HeaderlessTSVTaxonomyFormat \
+     --input-path 85_otu_taxonomy.txt \
+     --output-path ref-taxonomy.qza
+```
+Con el fin de evitar errores en la asignación, vamos a entrenar el clasificador para que contenga solo la parte de cada secuencia que hayamos amplificado. Si consultamos el fichero v4 primers.txt, podremos ver que los primers usados son 515F (5′-GTGYCAGCMGCCGCGGTAA-3′) y 806R (5′-GGACTACNVGGGTWTCTAAT-3′), que amplifican la región V4. Por tanto, extraeremos del artefacto correspondiente la región de interés por medio del siguiente comando:
+```
+qiime feature-classifier extract-reads \
+      --i-sequences 85_otus.qza \
+      --p-f-primer GTGYCAGCMGCCGCGGTAA \
+      --p-r-primer GGACTACHVGGGTWTCTAAT \
+      --p-min-length 100 \
+      --p-max-length 400 \
+      --o-reads ref-seqs.qza
+```
+Como vemos, el comando anterior ha tomado el artefacto correspondiente a las secuencias, así como los primers indicados en el párrafo anterior, proporcionando el fichero ref-seqs.qza con las secuencias de 85_otus.qza que pueden ser amplificadas usandos dichos primers permitiendo un rango de longitud entre 100 y 400 nucleótidos, algo que hemos determinado al abrir el fichero ref-seqs.qza en view.qiime2.org y pinchar en "Provenance".
+
+Tras esto, ya podemos generar el clasificador final, en el que asociamos las secuencias con su asignación taxonómica correspondiente, por medio del siguiente comando de qiime2:
+```
+qiime feature-classifier fit-classifier-naive-bayes \
+      --i-reference-reads ref-seqs.qza \
+      --i-reference-taxonomy ref-taxonomy.qza \
+      --o-classifier classifier.qza
+```
+Una vez ya hemos generado nuestro clasificador, vamos a llevar a cabo la asignación taxonómica de las secuencias representativas de cada ASV, por medio del siguiente comando, que generará un fichero llamado "classification.qza" con dicha información en una carpeta llamada "taxa":
+```
+qiime feature-classifier classify-sklearn --i-reads rep-seqs.qza \
+                                          --i-classifier classifier.qza \
+                                          --p-n-jobs 2 \
+                                          --output-dir taxa
+```
+Obtenemos así una carpeta "taxa" en la que tenemos las asignaciones taxonómicas de los ASVs y las representaciones gráficas. Con --p-n-jobs 2, indicamos al sistema que analice 2 ASVs al mismo tiempo.
+
+Tras esto, puesto que estamos interesados en conocer la abundancia de cada ASV en cada muestra y representar las mismas, vamos a generar el fichero taxa_barplot.qzv que nos permitirá visualizar esto, y que ha sido proporcionado por el profesor:
+```
+qiime taxa barplot --i-table table.qza \
+                   --i-taxonomy taxa/classification.qza \
+                   --m-metadata-file metadata \
+                   --o-visualization taxa/taxa_barplot.qzv
+```
+Adicionalmente, si bien la gráfica de taxa_barplot.qzv muestra la proporción de ASVs para todas las muestras, también podemos ver esta información para una de las categorías del fichero de metadatos. Concretamente, el profesor agrupó en base a la columna "Day_Temp", por medio del siguiente comando:
+```
+qiime feature-table group --i-table table.qza \
+                          --p-axis sample \
+                          --p-mode mean-ceiling \
+                          --m-metadata-file metadata \
+                          --m-metadata-column Day_Temp \
+                          --o-grouped-table table_sample.qza
+```
+Los resultados pueden ser representados en base a esta variable, por medio del siguiente comando en el que se ha usado otro fichero metadata llamado metadata_sample:
+```
+qiime taxa barplot --i-table table_sample.qza \
+                   --i-taxonomy taxa/classification.qza \
+                   --m-metadata-file metadata_sample \
+                   --o-visualization taxa/taxa_sample_barplot.qzv
+```
+Ademas, la tabla anterior la podemos visualizar también en view.qiime2.org por medio de:
+```
+qiime feature-table summarize \
+      --i-table table_sample.qza \
+      --o-visualization table_sample.qzv \
+      --m-sample-metadata-file metadata_sample
+```
+### 6. Estudio de la diversidad
+
