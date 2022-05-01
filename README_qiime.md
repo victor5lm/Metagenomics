@@ -286,4 +286,4 @@ Por medio del parámetro --p-pairwise, llevamos a cabo tests *pairwise* que perm
 
 ### 7. Conclusión final
 
-Por medio de esta práctica, hemos podido llevar a cabo el análisis de datos metagenómicos por medio de diversas herramientas, sobre todo QIIME2, obteniendo información altamente relevante, como el número de muestras, el número de counts por muestra, el número de ASVs por muestra, las alfa y beta diversidades, las taxonomías de los ASVs identificados, etc. Esto demuestra la enorme utilidad de herramientas computacionales como éstas a la hora de obtener información acerca de la composición microbiana de muestras metagenómicas
+Por medio de esta práctica, hemos podido llevar a cabo el análisis de datos metagenómicos por medio de diversas herramientas, sobre todo QIIME2, obteniendo información altamente relevante, como el número de muestras, el número de counts por muestra, el número de ASVs por muestra, las alfa y beta diversidades, las taxonomías de los ASVs identificados, etc. Esto demuestra la enorme utilidad de herramientas computacionales como éstas a la hora de obtener información acerca de la composición microbiana de muestras metagenómicas.
