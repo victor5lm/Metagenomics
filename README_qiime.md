@@ -231,3 +231,28 @@ qiime feature-table summarize \
 ```
 ### 6. Estudio de la diversidad
 
+Finalmente, el profesor también proporcionó archivos correspondientes a estudios de alfa y beta diversidad. Por tanto, vamos a reconstruir estos pasos también en este informe.
+
+En primer lugar, con el fin de determinar si existen diferencias significativas de diversidad entre las muestras del experimento, vamos a prestar atención a dos conceptos: la alfa diversidad (variación de las poblaciones dentro de una muestra concreta) y la beta diversidad (variación de las poblaciones entre distintas muestras).
+
+Puesto que el estudio de la alfa-diversidad es útil para determinar si la profundidad del mismo es suficiente para cubrir todos los taxones de la muestra, una forma de averiguar esto de forma visual es mediante un test de rarefacción, en el que muestras aleatorias son tomadas de un experimento al modificar la profundidad, con el fin de determinar el número de ASVs que aparecen. Las gráficas de las curvas de rarefacción crecen hasta cierto valor de profundidad, de forma que por encima de dicho valor no se accede a información adicional acerca de la biodiversidad. Para obtener estas gráficas, el profesor ejecutó el siguiente comando el qiime2:
+```
+qiime diversity alpha-rarefaction --i-table table.qza \
+                                  --p-max-depth 288000 \
+                                  --p-steps 100 \
+                                  --i-phylogeny rooted-tree.qza \
+                                  --m-metadata-file metadata \
+                                  --o-visualization rarefaction_curves.qzv
+```
+El profesor, en el parámetro --p-max-depth, introdujo el valor 288000, ya que, si consultamos la pestaña "Interactive Sample Detail" de table.qzv, vemos que el número de reads que la muestra más abundante posee es aproximadamente 288000, por lo que este será el máximo valor de profundidad a ser evaluado. Por otro lado, indicando --p-steps 100, el comando ha contado el número de ASVs cada 2880 secuencias.
+
+Tras ejecutar este comando y observar las curvas de rarefacción, también podemos obtener diversos índices de medición de la alfa-diversidad (como Shannon) y de la beta-diversidad (como Unifrac, Jaccard, etc), por medio del siguiente comando:
+```
+qiime diversity core-metrics-phylogenetic --i-table table.qza \
+                                          --i-phylogeny rooted-tree.qza \
+                                          --p-sampling-depth 85000 \
+                                          --m-metadata-file metadata \
+                                          --p-n-jobs-or-threads 2 \
+                                          --output-dir diversity
+```
+Para la ejecución de este comando, el profesor ha usado --p-sampling-depth 85000. Este parámetro es fundamental para este paso ya que la mayoría de las medidas de diversidad son sensibles a las diferencias existentes en la profundidad de secuenciación de las muestras, por lo que, por medio de este parámetro, todas las muestras acaban teniendo el mismo número de counts, en este caso, 85000. Si el número total de counts de una muestra es menor a dicho valor, la muestra no se tiene en cuenta para los análisis de diversidad, por lo que lo ideal es tomar un valor que sea lo más alto posible pero que excluya el menor número de muestras posible. Por tanto, si echamos un vistazo de nuevo a la pestaña "Interactive Sample Detail" del fichero table.qzv, veremos que la muestra que tiene menor número de counts tiene 85612 counts; de ahí que el profesor haya escogido 85000 para el parámetro --p-sampling-depth, para así evitar la pérdida de muestras a la hora de determinar la alfa-diversidad por medio de diversas medidas.
