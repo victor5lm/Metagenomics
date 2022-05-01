@@ -255,4 +255,35 @@ qiime diversity core-metrics-phylogenetic --i-table table.qza \
                                           --p-n-jobs-or-threads 2 \
                                           --output-dir diversity
 ```
-Para la ejecución de este comando, el profesor ha usado --p-sampling-depth 85000. Este parámetro es fundamental para este paso ya que la mayoría de las medidas de diversidad son sensibles a las diferencias existentes en la profundidad de secuenciación de las muestras, por lo que, por medio de este parámetro, todas las muestras acaban teniendo el mismo número de counts, en este caso, 85000. Si el número total de counts de una muestra es menor a dicho valor, la muestra no se tiene en cuenta para los análisis de diversidad, por lo que lo ideal es tomar un valor que sea lo más alto posible pero que excluya el menor número de muestras posible. Por tanto, si echamos un vistazo de nuevo a la pestaña "Interactive Sample Detail" del fichero table.qzv, veremos que la muestra que tiene menor número de counts tiene 85612 counts; de ahí que el profesor haya escogido 85000 para el parámetro --p-sampling-depth, para así evitar la pérdida de muestras a la hora de determinar la alfa-diversidad por medio de diversas medidas.
+Para la ejecución de este comando, el profesor ha usado --p-sampling-depth 85000. Este parámetro es fundamental para este paso ya que la mayoría de las medidas de diversidad son sensibles a las diferencias existentes en la profundidad de secuenciación de las muestras, por lo que, por medio de este parámetro, todas las muestras acaban teniendo el mismo número de counts, en este caso, 85000 (es una forma de normalización). Si el número total de counts de una muestra es menor a dicho valor, la muestra no se tiene en cuenta para los análisis de diversidad, por lo que lo ideal es tomar un valor que sea lo más alto posible pero que excluya el menor número de muestras posible. Por tanto, si echamos un vistazo de nuevo a la pestaña "Interactive Sample Detail" del fichero table.qzv, veremos que la muestra que tiene menor número de counts tiene 85612 counts; de ahí que el profesor haya escogido 85000 para el parámetro --p-sampling-depth, para así evitar la pérdida de muestras a la hora de determinar la alfa-diversidad por medio de diversas medidas.
+
+Los índices obtenidos, guardados en la carpeta diversity, pueden ser visualizados y consultados en view.qiime2.org.
+
+Estos índices de medición de las alfa y beta diversidades también los podemos obtener para la tabla agrupada según la variable "Day_Temp", por medio del siguiente comando:
+```
+qiime diversity core-metrics-phylogenetic --i-table table_sample.qza \
+                                          --i-phylogeny rooted-tree.qza \
+                                          --p-sampling-depth 101046 \
+                                          --m-metadata-file metadata \
+                                          --p-n-jobs-or-threads 2 \
+                                          --output-dir diversity_sample
+```
+Para la ejecución de este comando, el profesor ha usado --p-sampling-depth 101046. Este parámetro es fundamental para este paso ya que la mayoría de las medidas de diversidad son sensibles a las diferencias existentes en la profundidad de secuenciación de las muestras, por lo que, por medio de este parámetro, todos los grupos acaban teniendo el mismo número de counts, en este caso, 101046 (es una forma de normalización). Si el número total de counts de un grupo es menor a dicho valor, el grupo no se tiene en cuenta para los análisis de diversidad, por lo que lo ideal es tomar un valor que sea lo más alto posible pero que excluya el menor número de, en este caso, grupos posible. Por tanto, si echamos un vistazo de nuevo a la pestaña "Interactive Sample Detail" del fichero table_sample.qzv, veremos que el grupo que tiene menor número de counts tiene 101046 counts; de ahí que el profesor haya escogido 101046 para el parámetro --p-sampling-depth, para así evitar la pérdida de grupos y, por consiguiente, de información, a la hora de determinar las diversidades por medio de diversas medidas.
+
+Los índices obtenidos, guardados en la carpeta diversity, pueden ser visualizados y consultados en view.qiime2.org.
+
+Finalmente, también podemos analizar la composición de las muestras usando PERMANOVA por medio del siguiente comando. Éste evaluará si las distancias entre las muestras dentro de un mismo grupo son más similares entre sí que entre éstas y otras muestras de otros grupos:
+```
+qiime diversity beta-group-significance --i-distance-matrix diversity/weighted_unifrac_distance_matrix.qza \
+                                        --m-metadata-file metadata \
+                                        --m-metadata-column Day_Temp \
+                                        --o-visualization diversity/weighted_unifrac_condition_significance.qzv \
+                                        --p-method permanova \
+                                        --p-pairwise
+
+```
+Por medio del parámetro --p-pairwise, llevamos a cabo tests *pairwise* que permiten determinar qué pares de grupos específicos difieren de otros, si los hay. Este comando se ha llevado a cabo específicamente para la columna "Day_Temp" de los metadatos para agilizar el proceso. Por otro lado, este comando de qiime2 presenta otro parámetro denominado --p-permutations, correspondiente al número de permutaciones para comuputar el p-valor. Al abrir el fichero weighted_unifrac_condition_significance.qzv en view.qiime2.org y pinchar en la pestaña "Provenance", podemos comprobar que el valor de este parámetro es 999, que es el valor por defecto, de ahí que no venga incluido en el comando expuesto en la celda superior a este párrafo.
+
+### 7. Conclusión final
+
+Por medio de esta práctica, hemos podido llevar a cabo el análisis de datos metagenómicos por medio de diversas herramientas, sobre todo QIIME2, obteniendo información altamente relevante, como el número de muestras, el número de counts por muestra, el número de ASVs por muestra, las alfa y beta diversidades, las taxonomías de los ASVs identificados, etc. Esto demuestra la enorme utilidad de herramientas computacionales como éstas a la hora de obtener información acerca de la composición microbiana de muestras metagenómicas
