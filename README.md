@@ -45,12 +45,12 @@ En este paso, vamos a determinar si ambos archivos poseen el mismo número de le
 ```
 wc -l virome_R1.fastq | awk '{print $1/4}'
 ```
->10000
+>100000
 
 ```
 wc -l virome_R2.fastq | awk '{print $1/4}'
 ```
->10000
+>100000
 
 Efectivamente, ambos ficheros poseen el mismo número de *reads*.
 
