@@ -101,5 +101,17 @@ MEGAN6 analiza la taxonomía de las lecturas alineadas con la base de datos de p
 
 #### 3.1: Importamos los archivos de DIAMOND en MEGAN6
 
+Importamos los ficheros pertinentes en MEGAN6, concretamente de esta forma, tras haber pinchado en File->Import from BLAST:
+
+![image](https://user-images.githubusercontent.com/98259577/166725000-374b2d61-7ac0-4117-982b-996fbc2f6244.png)
+
+Tal y como puede apreciarse, hemos seleccionado el formato BlastTab y el modo BlastX. Posteriormente, hacemos click en "Next" y subimos también el archivo prot_acc2tax-Jul2019X1.abin.zip (descomprimido previamente), necesario para aportar información taxonómica a MEGAN6, pulsando en el símbolo de la carpeta que podemos ver al lado de "Load Accession mapping file", el cual se puede apreciar en la siguiente imagen:
+
+![image](https://user-images.githubusercontent.com/98259577/166725783-b781e520-fedc-456d-ae08-348bedf1a7f4.png)
+
+Tras pulsar en "Apply", obtenemos el siguiente resultado:
+
+
+
 
 
