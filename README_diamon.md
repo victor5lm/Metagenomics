@@ -42,7 +42,7 @@ bowtie2 -x human-phix174 -q virome_qf.fq --un virome_qf_clean.fq -S tmp.sam
 >8 (0.01%) aligned >1 times
 >
 >0.12% overall alignment rate
-
+---
 ### 2. Alineamiento de las lecturas de alta calidad y descontaminadas con una base de datos de proteínas virales
 
 #### 2.1: Preparación de la base de datos de proteínas virales
@@ -95,6 +95,7 @@ head virome_qf_clean_vs_viralprotein.m8
 
 A continuación, vamos a analizar la taxonomía de estas secuencias por medio de MEGAN6.
 
+---
 ### 3. Análisis de la taxonomía de las lecturas con MEGAN6
 
 MEGAN6 analiza la taxonomía de las lecturas alineadas con la base de datos de proteínas virales tomada de NCBI y genera un árbol taxonómico.
@@ -111,7 +112,19 @@ Tal y como puede apreciarse, hemos seleccionado el formato BlastTab y el modo Bl
 
 Tras pulsar en "Apply", obtenemos el siguiente resultado:
 
+![image](https://user-images.githubusercontent.com/98259577/166731863-9374c8de-5885-4376-bf72-4a1335f4a2bd.png)
 
+A continuación, lo que realmente nos interesa es conocer la composición taxonómica de nuestras lecturas (ya pre-procesadas para quedarnos solamente con las de buena calidad) a nivel de familia, algo que podemos conseguir por medio de los siguientes pasos:
+1. En "Tree"->"Rank", indicamos como nivel taxonómico "Family".
+2. En "Tree", hacemos click en "Show number of summarized".
+3. En "Options", hacemos click en "Change LCA Parameters", tras lo cual indicamos como minimal score=60, max e-value=10e-10 y min complexity=0.5, con el fin de reducir falsos positivos.
+Tras esto, obtenemos la siguiente representación gráfica en MEGAN6:
 
+**Resultados a nivel de familia**
+
+![image](https://user-images.githubusercontent.com/98259577/166743649-7eb4944e-0f35-480d-bc13-37153666648f.png)
+
+---
+### 4. Conclusión final
 
 
