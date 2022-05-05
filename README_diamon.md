@@ -187,4 +187,4 @@ De esta forma, hemos podido conocer la taxonomía, a nivel de familia, de nuestr
 ---
 ### 4. Conclusión final
 
-A modo de conclusión, hemos podido comprobar cómo DIAMOND, efectivamente, es capaz de alinear un gran número de lecturas cortas obtenidas a partir de secuenciación *shotgun* con mucha más rapidez que BLASTX, y con similar sensibilidad a la de este algoritmo.
+A modo de conclusión, hemos podido comprobar cómo DIAMOND, efectivamente, es capaz de alinear un gran número de lecturas cortas obtenidas a partir de secuenciación *shotgun* con mucha más rapidez que BLASTX, y con similar sensibilidad a la de este algoritmo. Adicionalmente, también hemos podido evidenciar la capacidad de MEGAN para llevar a cabo una asignación taxonómica eficiente de dichas lecturas alineadas por medio del algoritmo LCA, demostrando poder aportar al usuario información relativa a la taxonomía de las lecturas obtenidas tras la secuenciación (algo visto en esta práctica), así como la 
