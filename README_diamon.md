@@ -126,18 +126,30 @@ head virome_qf_clean_vs_viralprotein.m8
 | M02255:128:000000000-AG7E5:1:2116:15291:16348_1:N:0:AGTCAA | YP_239642.1 | 73.4 | 94 | 25 | 0 | 284 | 3 | 97 | 190 | 2.6e-34 | 145.2 |
 
 >Esta tabla contiene la siguiente información ordenada por columnas:
-1.-qseqid: *Query Seq-id*
-2.-sseqid: *Subject Seq-id*
-3.-pident: Porcentaje de *matches* idénticos
-4.-length: Longitud del alineamiento
-5.-mismatch: Número de *mismatches*
-6.-gapopen: Número de *gap openings*
-7.-qstart: Comienzo del alineamiento en la *query*
-8.-qend: Final del alineamiento en la *query*
-9.-sstart: Comienzo del alineamiento en el sujeto en cuestión
-10.-send: Final del alineamiento en el sujeto en cuestión
-11.-evalue: *Expected value*
-12.-bitscore: *Bit score*
+>
+>1.-qseqid: *Query Seq-id*
+>
+>2.-sseqid: *Subject Seq-id*
+>
+>3.-pident: Porcentaje de *matches* idénticos
+>
+>4.-length: Longitud del alineamiento
+>
+>5.-mismatch: Número de *mismatches*
+>
+>6.-gapopen: Número de *gap openings*
+>
+>7.-qstart: Comienzo del alineamiento en la *query*
+>
+>8.-qend: Final del alineamiento en la *query*
+>
+>9.-sstart: Comienzo del alineamiento en el sujeto en cuestión
+>
+>10.-send: Final del alineamiento en el sujeto en cuestión
+>
+>11.-evalue: *Expected value*
+>
+>12.-bitscore: *Bit score*
 
 A continuación, vamos a analizar la taxonomía de estas secuencias por medio de MEGAN6.
 
@@ -152,7 +164,7 @@ Importamos los ficheros pertinentes en MEGAN6, concretamente de esta forma, tras
 
 ![image](https://user-images.githubusercontent.com/98259577/166725000-374b2d61-7ac0-4117-982b-996fbc2f6244.png)
 
-Tal y como puede apreciarse, hemos seleccionado el formato BlastTab y el modo BlastX. Posteriormente, hacemos click en "Next" y subimos también el archivo prot_acc2tax-Jul2019X1.abin.zip (descomprimido previamente), necesario para aportar información taxonómica a MEGAN6, pulsando en el símbolo de la carpeta que podemos ver al lado de "Load Accession mapping file", el cual se puede apreciar en la siguiente imagen:
+Tal y como puede apreciarse, hemos seleccionado el formato BlastTab y el modo BlastX. Posteriormente, hacemos click en "Next" y subimos también el archivo prot_acc2tax-Jul2019X1.abin (obtenido tras descomprimir prot_acc2tax-Jul2019X1.abin.zip), necesario para aportar información taxonómica a MEGAN6, pulsando en el símbolo de la carpeta que podemos ver al lado de "Load Accession mapping file", el cual se puede apreciar en la siguiente imagen:
 
 ![image](https://user-images.githubusercontent.com/98259577/166725783-b781e520-fedc-456d-ae08-348bedf1a7f4.png)
 
@@ -166,11 +178,13 @@ A continuación, lo que realmente nos interesa es conocer la composición taxon�
 3. En "Options", hacemos click en "Change LCA Parameters", tras lo cual indicamos como minimal score=60, max e-value=10e-10 y min complexity=0.5, con el fin de reducir falsos positivos.
 Tras esto, obtenemos la siguiente representación gráfica en MEGAN6:
 
-**Resultados a nivel de familia**
+**Resultados a nivel de familia para nuestras lecturas de buena calidad**
 
 ![image](https://user-images.githubusercontent.com/98259577/166743649-7eb4944e-0f35-480d-bc13-37153666648f.png)
+
+De esta forma, hemos podido conocer la taxonomía, a nivel de familia, de nuestras lecturas, así como saber qué familias son las más abundantes en nuestra muestra (concretamente, sin contar las lecturas no asociadas con ninguna taxonomía, éstas son *Siphoviridae* y *Podoviridae*). Si hubiésemos tomado, como *mapping file*, otro archivo como acc2eggnog-Jul2019X.abin.zip o acc2interpro-Jul2019X.abin.zip (a partir de https://software-ab.informatik.uni-tuebingen.de/download/megan6/old.html), habríamos podido llevar a cabo un análisis funcional de nuestras lecturas, si bien no es ese el objetivo de esta práctica.
 
 ---
 ### 4. Conclusión final
 
-A modo de conclusión, hemos podido 
+A modo de conclusión, hemos podido comprobar cómo DIAMOND, efectivamente, es capaz de alinear un gran número de lecturas cortas obtenidas a partir de secuenciación *shotgun* con mucha más rapidez que BLASTX, y con similar sensibilidad a la de este algoritmo.
