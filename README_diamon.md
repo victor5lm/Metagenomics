@@ -68,12 +68,15 @@ bowtie2 -x human-phix174 -q virome_qf.fq --un virome_qf_clean.fq -S tmp.sam
 >8 (0.01%) aligned >1 times
 >
 >0.12% overall alignment rate
+
+Podemos apreciar, en base a estos resultados, que apenas existen contaminaciones entre nuestras lecturas.
+
 ---
 ### 2. Alineamiento de las lecturas de alta calidad y descontaminadas con una base de datos de proteínas virales
 
 #### 2.1: Preparación de la base de datos de proteínas virales
 
-En primer lugar, vamos a descargar los archivos relativos a la base de datos a partir del siguiente enlace: https://ftp.ncbi.nlm.nih.gov/refseq/release/viral/
+En primer lugar, vamos a descargar los archivos relativos a la base de datos proteica de NCBI a partir del siguiente enlace: https://ftp.ncbi.nlm.nih.gov/refseq/release/viral/
 
 Dentro de los archivos listados, descargamos los siguientes:
 * viral.1.protein.faa.gz
@@ -89,10 +92,13 @@ grep -c ">" *faa
 ```
 #### 2.2: Creamos la base de datos a usar por DIAMOND
 
+A continuación, en base a dicha base de datos de referencia, vamos a generar el índice que usará DIAMOND para los alineamientos:
 ```
 diamond makedb --in viral.protein.faa -d viralproteins
 ```
 #### 2.3: Alineamiento por medio de blastx
+
+A continuación, ejecutamos DIAMOND para el alineamiento de las lecturas frente al índice que acabamos de crear en el paso anterior.
 ```
 diamond blastx -d viralproteins.dmnd -q virome_qf_clean.fq -o virome_qf_clean_vs_viralprotein.m8
 ```
@@ -118,6 +124,20 @@ head virome_qf_clean_vs_viralprotein.m8
 | M02255:128:000000000-AG7E5:1:2116:15291:16348_1:N:0:AGTCAA | YP_001285355.1 | 73.4 | 94 | 25 | 0 | 284 | 3 | 97 | 190 | 2.6e-34 | 145.2 |
 | M02255:128:000000000-AG7E5:1:2116:15291:16348_1:N:0:AGTCAA | YP_239566.1 | 73.4 | 94 | 25 | 0 | 284 | 3 | 97 | 190 | 2.6e-34 | 145.2 |
 | M02255:128:000000000-AG7E5:1:2116:15291:16348_1:N:0:AGTCAA | YP_239642.1 | 73.4 | 94 | 25 | 0 | 284 | 3 | 97 | 190 | 2.6e-34 | 145.2 |
+
+>Esta tabla contiene la siguiente información ordenada por columnas:
+1.-qseqid: *Query Seq-id*
+2.-sseqid: *Subject Seq-id*
+3.-pident: Porcentaje de *matches* idénticos
+4.-length: Longitud del alineamiento
+5.-mismatch: Número de *mismatches*
+6.-gapopen: Número de *gap openings*
+7.-qstart: Comienzo del alineamiento en la *query*
+8.-qend: Final del alineamiento en la *query*
+9.-sstart: Comienzo del alineamiento en el sujeto en cuestión
+10.-send: Final del alineamiento en el sujeto en cuestión
+11.-evalue: *Expected value*
+12.-bitscore: *Bit score*
 
 A continuación, vamos a analizar la taxonomía de estas secuencias por medio de MEGAN6.
 
