@@ -127,8 +127,18 @@ Tras esto, obtenemos la siguiente representación gráfica en MEGAN6:
 ---
 ### 4. Conclusión final
 
-NOTAS sobre DIAMOND+MEGAN:
+NOTAS sobre DIAMOND+MEGAN (video):
 
 Muchos microbios no pueden ser cultivados al no estar aislados, por lo que muchas veces los microbios se analizan dentro de una comunidad de microbios (microbioma). Las muestras metagenómicas pueden obtenerse a partir de muestras de suelo, agua, aire, muestras humanas, etc. Para la secuenciación de DNA metagenómico, encontramos las técnicas NGS, las cuales pueden ser utilizadas perfectamente para muestras metagenómicas. Para analizar lecturas metagenómicas, empleamos BLASTX (non-host reads against NCBI-nr), para luego emplear el algoritmo LCA para asignar cada read a un taxón en base a su alineamiento. En 2006, en base a esto, se generó MEGAN, una pipeline a la que le das unas lecturas (.fasta), corres BLASTX con la DB NCBI y entonces MEGAN pasa los resultados (.blastx) y permite analizar interactivamente los resultados.
 
 Encontramos DIAMOND, que reemplaza a BLASTX cuando estamos usando lecturas de microbioma y presenta una sensibilidad muy similar a la de BLASTX y es mucho mucho más rápido que BLASTX, luego es más conveniente. Recuerda que básicamente estamos alineando nuestras lecturas con una base de datos de proteínas, y hemos visto que DIAMOND es muchísimo más rápido que BLASTX a la hora de alinear estas lecturas con dicha base de datos. Entonces, claro, ya sabemos qué proteínas tendríamos en la muestra, pero también querríamos saber a qué taxón se corresponde cada read, e incluso llevar a cabo un análisis funcional. Para esto sirve MEGAN. MEGAN es una herramienta que permite explorar el contenido taxonómico de una muestra, el contenido funcional (esto no lo podemos hacer en este caso porque partimos de un mapping file con información taxonómica, no funcional), comparar múltiples muestras simultáneamente y llevar a cabo cálculos como PCoA analysis. 
+
+NOTAS (articulo):
+Esta pipeline se emplea básicamente para alinear unas secuencias metagenómicas frente a una base de datos de proteínas de identidad taxonómica conocida, y los alineamientos obtenidos se usan para asignar las secuencias a un taxón en concreto. La base de datos usada es de proteínas ya que así no se dan problemas que se darían al usar una BD genómica. La asignación taxonómica de los reads se hace con un algoritmo como naive LCA para taxonomic binning. Básicamente la pipeline DIAMOND+MEGAN, para el análisis de lecturas de microbioma, consiste en tres pasos:
+1. Alineamiento de las lecturas frente a una base de datos de referencia proteica usando DIAMOND.
+2. Análisis taxonómico de los alineamientos usando MEGAN.
+3. Exploración interactiva del análisis por medio de MEGAN.
+
+Para el análisis taxonómico de las lecturas con el algoritmo LCA, podemos cambiar los parámetros, sobre todo por minimal bit score (Min score), e-value (Max Expected) y minimal percentage identity (Min Percent Identity). Con Show Number of Summarized, podemos ver el número de reads asignados a un nodo y sus descendientes. Como he dicho antes, no podemos hacer análisis funcional porque no hemos aportado dicha información a MEGAN (se tomaría de EC, eggNOG, InterPro, KEGG, etc).
+
+ESTO ES TODO.
