@@ -307,6 +307,18 @@ qiime diversity beta-group-significance --i-distance-matrix diversity/weighted_u
 ```
 Por medio del parámetro --p-pairwise, llevamos a cabo tests *pairwise* que permiten determinar qué pares de grupos específicos difieren de otros, si los hay. Este comando se ha llevado a cabo específicamente para la columna "Day_Temp" de los metadatos para agilizar el proceso. Por otro lado, este comando de qiime2 presenta otro parámetro denominado --p-permutations, correspondiente al número de permutaciones para comuputar el p-valor. Al abrir el fichero weighted_unifrac_condition_significance.qzv en view.qiime2.org y pinchar en la pestaña "Provenance", podemos comprobar que el valor de este parámetro es 999, que es el valor por defecto, de ahí que no venga incluido en el comando expuesto en la celda superior a este párrafo.
 
-### 7. Conclusión final
+### 7. Análisis en R con DESeq2
+
+Finalmente, para terminar la práctica, vamos a echar un vistazo al fichero "DESeq2.html" proporcionado por el profesor y tratar de interpretar la gráfica obtenida (el código no se comentará al ser ya aportado por el profesor). Este archivo se corresponde con el análisis de los resultados, concretamente, en este caso, con el fin de determinar diferencias, dentro de un nivel taxónomico concreto, entre las abundancias de diversos taxones. Específicamente, como se indica en este fichero, se ha ejecutado este programa para conocer qué ASVs o taxones son más abundantes en función del día de toma de la muestra (día 0 desde el inicio del experimento o día 31), siendo dichas muestras de heces y de ratones expuestos a frío. Tal y como muestra el profesor al final del archivo, tras ejecutar todos los comandos expuestos se obtiene la siguiente gráfica:
+
+![image](https://user-images.githubusercontent.com/98259577/167214694-016c9b30-7fe9-4f57-b97e-4908f58e4c5d.png)
+
+La forma de interpretar esta representación gráfica depende de lo que hayamos indicado en este comando:
+```
+rescold <- results(colddds, cooksCutoff = FALSE, contrast=c("Collection_Day", "Day_31", "Day_0"))
+```
+Al haber indicado como numerador la variable "Day_31" y como denominador la variable "Day_0", las familias taxonómicas que se sitúan por encima de 1 (línea naranja) son más abundantes en muestras de heces, recogidas en frío, tomadas en el día 31 del experimento, mientras que las familias taxonómicas situadas por debajo de -1 (línea rosa) son más abundantes en muestras de heces, recogidas en frío, tomadas en el mismo día del inicio del experimento (día 0). Estos aspectos parecen indicar que, efectivamente, **la exposición de los ratones al frío afecta a la microbiota a medida que pasan los días** ya que, por ejemplo, para la familia *Lachnospiraceae*, del phylum *Firmicutes*, ésta es mucho más abundante en las heces recogidas en frío tras 31 días de experimento en comparación con las heces recogidas en frío el mismo día del experimento. Lo contrario ocurre, por ejemplo, con la familia *S24-7* del phylum *Bacteroidetes*, esto es, ésta es más abundante en heces recogidas en frío el mismo día del experiemnto en comparación con las heces recogidas en frío tras 31 días de experimento.
+
+### 8. Conclusión final
 
 Por medio de esta práctica, hemos podido llevar a cabo el análisis de datos metagenómicos por medio de diversas herramientas, sobre todo QIIME2, obteniendo información altamente relevante, como el número de muestras, el número de counts por muestra, el número de ASVs por muestra, las alfa y beta diversidades, las taxonomías de los ASVs identificados, etc. Esto demuestra la enorme utilidad de herramientas computacionales como éstas a la hora de obtener información acerca de la composición microbiana de muestras metagenómicas.
