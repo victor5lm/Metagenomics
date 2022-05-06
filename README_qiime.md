@@ -189,7 +189,11 @@ qiime feature-classifier extract-reads \
       --p-max-length 400 \
       --o-reads ref-seqs.qza
 ```
-Como vemos, el comando anterior ha tomado el artefacto correspondiente a las secuencias, así como los primers indicados en el párrafo anterior, proporcionando el fichero ref-seqs.qza con las secuencias de 85_otus.qza que pueden ser amplificadas usandos dichos primers permitiendo un rango de longitud entre 100 y 400 nucleótidos, algo que hemos determinado al abrir el fichero ref-seqs.qza en view.qiime2.org y pinchar en "Provenance".
+Tal y como puede apreciarse, los valores de estos parámetros son correspondientes a los usados por el profesor cuando ejecutó este comando; esto es algo que podemos comprobar al abrir ref-seqs.qza en view.qiime2.org y pinchar en la pestaña "Provenance":
+
+![image](https://user-images.githubusercontent.com/98259577/167139574-bfb8e095-25cc-4a16-8d23-c9c2c30ca736.png)
+
+Como vemos, el comando anterior ha tomado el artefacto correspondiente a las secuencias, así como los primers indicados en el párrafo superior al mismo, proporcionando el fichero ref-seqs.qza con las secuencias de 85_otus.qza que pueden ser amplificadas usandos dichos primers permitiendo un rango de longitud entre 100 y 400 nucleótidos.
 
 Tras esto, ya podemos generar el clasificador final, en el que asociamos las secuencias con su asignación taxonómica correspondiente, por medio del siguiente comando de qiime2:
 ```
@@ -252,6 +256,10 @@ qiime diversity alpha-rarefaction --i-table table.qza \
                                   --m-metadata-file metadata \
                                   --o-visualization rarefaction_curves.qzv
 ```
+Los valores de estos parámetros son correspondientes a los usados por el profesor cuando ejecutó este comando; esto es algo que podemos comprobar al abrir rarefaction_curves.qzv en view.qiime2.org y pinchar en la pestaña "Provenance":
+
+![image](https://user-images.githubusercontent.com/98259577/167140229-b079d548-6db4-4850-82e2-fe500a449daf.png)
+
 El profesor, en el parámetro --p-max-depth, introdujo el valor 288000, ya que, si consultamos la pestaña "Interactive Sample Detail" de table.qzv, vemos que el número de reads que la muestra más abundante posee es aproximadamente 288000, por lo que este será el máximo valor de profundidad a ser evaluado. Por otro lado, indicando --p-steps 100, el comando ha contado el número de ASVs cada 2880 secuencias.
 
 Tras ejecutar este comando y observar las curvas de rarefacción, también podemos obtener diversos índices de medición de la alfa-diversidad (como Shannon) y de la beta-diversidad (como Unifrac, Jaccard, etc), por medio del siguiente comando:
@@ -263,9 +271,13 @@ qiime diversity core-metrics-phylogenetic --i-table table.qza \
                                           --p-n-jobs-or-threads 2 \
                                           --output-dir diversity
 ```
+Los valores de estos parámetros son correspondientes a los usados por el profesor cuando ejecutó este comando; esto es algo que podemos comprobar al abrir cualquiera de los ficheros de la carpeta "diversity" en view.qiime2.org y pinchar en la pestaña "Provenance":
+
+![image](https://user-images.githubusercontent.com/98259577/167140535-e195248a-f3f6-4709-9f66-e76d911f7ca0.png)
+
 Para la ejecución de este comando, el profesor ha usado --p-sampling-depth 85000. Este parámetro es fundamental para este paso ya que la mayoría de las medidas de diversidad son sensibles a las diferencias existentes en la profundidad de secuenciación de las muestras, por lo que, por medio de este parámetro, todas las muestras acaban teniendo el mismo número de counts, en este caso, 85000 (es una forma de normalización). Si el número total de counts de una muestra es menor a dicho valor, la muestra no se tiene en cuenta para los análisis de diversidad, por lo que lo ideal es tomar un valor que sea lo más alto posible pero que excluya el menor número de muestras posible. Por tanto, si echamos un vistazo de nuevo a la pestaña "Interactive Sample Detail" del fichero table.qzv, veremos que la muestra que tiene menor número de counts tiene 85612 counts; de ahí que el profesor haya escogido 85000 para el parámetro --p-sampling-depth, para así evitar la pérdida de muestras a la hora de determinar la alfa-diversidad por medio de diversas medidas.
 
-Los índices obtenidos, guardados en la carpeta diversity, pueden ser visualizados y consultados en view.qiime2.org.
+Los índices obtenidos, guardados en la carpeta "diversity", pueden ser, como hemos comprobado, visualizados y consultados en view.qiime2.org.
 
 Estos índices de medición de las alfa y beta diversidades también los podemos obtener para la tabla agrupada según la variable "Day_Temp", por medio del siguiente comando:
 ```
@@ -276,9 +288,13 @@ qiime diversity core-metrics-phylogenetic --i-table table_sample.qza \
                                           --p-n-jobs-or-threads 2 \
                                           --output-dir diversity_sample
 ```
+Los valores de estos parámetros son correspondientes a los usados por el profesor cuando ejecutó este comando; esto es algo que podemos comprobar al abrir cualquiera de los ficheros de la carpeta "diversity_sample" en view.qiime2.org y pinchar en la pestaña "Provenance":
+
+![image](https://user-images.githubusercontent.com/98259577/167140813-72cd2e15-f362-4cd8-8469-28823eb8088b.png)
+
 Para la ejecución de este comando, el profesor ha usado --p-sampling-depth 101046. Este parámetro es fundamental para este paso ya que la mayoría de las medidas de diversidad son sensibles a las diferencias existentes en la profundidad de secuenciación de las muestras, por lo que, por medio de este parámetro, todos los grupos acaban teniendo el mismo número de counts, en este caso, 101046 (es una forma de normalización). Si el número total de counts de un grupo es menor a dicho valor, el grupo no se tiene en cuenta para los análisis de diversidad, por lo que lo ideal es tomar un valor que sea lo más alto posible pero que excluya el menor número de, en este caso, grupos posible. Por tanto, si echamos un vistazo a la pestaña "Interactive Sample Detail" del fichero table_sample.qzv, veremos que el grupo que tiene menor número de counts tiene 101046 counts; de ahí que el profesor haya escogido 101046 para el parámetro --p-sampling-depth, para así evitar la pérdida de grupos y, por consiguiente, de información, a la hora de determinar las diversidades por medio de diversas medidas.
 
-Los índices obtenidos, guardados en la carpeta diversity_sample, pueden ser visualizados y consultados en view.qiime2.org.
+Los índices obtenidos, guardados en la carpeta diversity_sample, pueden ser, como hemos podido comprobar, visualizados y consultados en view.qiime2.org.
 
 Finalmente, también podemos analizar la composición de las muestras usando PERMANOVA por medio del siguiente comando. Éste evaluará si las distancias entre las muestras dentro de un mismo grupo son más similares entre sí que entre éstas y otras muestras de otros grupos:
 ```
