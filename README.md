@@ -85,9 +85,31 @@ Como la media de la longitud de las lecturas es 299, el 50% de ésta es 149, por
 
 ```
 trimmomatic PE -phred33 virome_R1.fastq virome_R2.fastq virome_R1_qf_paired.fq virome_R1_qf_unpaired.fq virome_R2_qf_paired.fq virome_R2_qf_unpaired.fq SLIDINGWINDOW:4:20 MINLEN:149
+```
+>Multiple cores found: Using 4 threads
+>
+>Input Read Pairs: 100000 Both Surviving: 56547 (56.55%) Forward Only Surviving: 26011 (26.01%) Reverse Only Surviving: 1968 (1.97%) Dropped: 15474 (15.47%)
+>
+>TrimmomaticPE: Completed successfully
+
+```
 trimmomatic PE -phred33 virome_R1.fastq virome_R2.fastq virome_R1_qf1_paired.fq virome_R1_qf1_unpaired.fq virome_R2_qf1_paired.fq virome_R2_qf1_unpaired.fq SLIDINGWINDOW:4:20 MINLEN:70
+```
+>Multiple cores found: Using 4 threads
+>
+>Input Read Pairs: 100000 Both Surviving: 80850 (80.85%) Forward Only Surviving: 14158 (14.16%) Reverse Only Surviving: 1026 (1.03%) Dropped: 3966 (3.97%)
+>
+>TrimmomaticPE: Completed successfully
+
+```
 trimmomatic PE -phred33 virome_R1.fastq virome_R2.fastq virome_R1_qf2_paired.fq virome_R1_qf2_unpaired.fq virome_R2_qf2_paired.fq virome_R2_qf2_unpaired.fq SLIDINGWINDOW:4:15 MINLEN:36
 ```
+>Multiple cores found: Using 4 threads
+>
+>Input Read Pairs: 100000 Both Surviving: 93796 (93.80%) Forward Only Surviving: 5870 (5.87%) Reverse Only Surviving: 143 (0.14%) Dropped: 191 (0.19%)
+>
+>TrimmomaticPE: Completed successfully
+
 A continuación, vamos a ejecutar de nuevo *fastqc* para analizar la calidad de las lecturas, para los tres casos, tras la eliminación de los extremos de baja calidad y las lecturas cortas:
 ```
 mkdir virome_QF_quality
