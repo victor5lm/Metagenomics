@@ -188,6 +188,8 @@ wc -l *clean_2* | awk '{print $1/4}'
 >93700
 >187400
 
+Tal y como podemos apreciar, la proporción de contaminaciones existentes entre las lecturas es muy pequeña, ya que el número de lecturas restante, tanto en las *forward* como en las *reverse*, tras la eliminación de las mismas, es muy similar al existente tras el filtrado de calidad realizado anteriormente.
+
 ### 2. Ensamblaje *de novo* con *Spades* y comparación de los distintos ensamblajes con *QUAST*
 
 A continuación, vamos a utilizar el programa *Spades* para el ensamblaje *de novo*. Para ello, ejecutaremos estos comandos, usando asimismo los parámetros -t (para indicar el número de *threads* a usar por el ensamblador), -m (para indicar la memoria que el programa puede usar) y -k (para indicar la longitud de los kmeros a usar durante el ensamblado), así como el *flag* --meta. Llevaremos a cabo, para los ficheros virome_clean.1.fq y virome_clean.2.fq, 3 ensamblajes distintos:
