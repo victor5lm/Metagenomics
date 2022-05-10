@@ -188,7 +188,7 @@ wc -l *clean_2* | awk '{print $1/4}'
 >93700
 >187400
 
-Tal y como podemos apreciar, la proporción de contaminaciones existentes entre las lecturas es muy pequeña, ya que el número de lecturas restante, tanto en las *forward* como en las *reverse*, tras la eliminación de las mismas, es muy similar al existente tras el filtrado de calidad realizado anteriormente. Esto puede observarse para los tres filtrados de calidad realizados con *Trimmomatic*, así como los correspondientes alineamientos con los genomas humano y de phiX174.
+Tal y como podemos apreciar, la proporción de contaminaciones existentes entre las lecturas es muy pequeña, ya que el número de lecturas restante, tanto en las *forward* como en las *reverse*, tras la eliminación de las mismas, es muy similar al existente tras el filtrado de calidad realizado anteriormente. Esto puede observarse para los tres filtrados de calidad realizados con *Trimmomatic*, así como sus subsiguientes alineamientos con los genomas humano y de phiX174.
 
 ### 2. Ensamblaje *de novo* con *Spades* y comparación de los distintos ensamblajes con *QUAST*
 
