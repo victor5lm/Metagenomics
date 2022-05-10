@@ -146,6 +146,8 @@ Tras la ejecución de estos comandos, obtenemos las siguientes gráficas de cali
 
 ![image](https://user-images.githubusercontent.com/98259577/165761720-ef4e39e4-c46e-4bf7-b1a5-79d3a34e7849.png)
 
+Tal y como se puede apreciar, a medida que disminuye el valor del parámetro MINLEN (longitud mínima a tener las lecturas para no ser desechadas), mayor es el número de lecturas que se conservan tras el filtrado de calidad.
+
 #### 1.6. Eliminación de las lecturas que alinean con el genoma humano o el de phiX174 con *Bowtie2*
 
 A continuación, para eliminar estas lecturas correspondientes a contaminaciones, vamos a usar Bowtie2. Para ello, vamos a construir primero un índice que contenga las secuencias de referencia a usar para el alineamiento, en este caso procedentes del ser humano y de phiX174. En primer lugar, ejectuamos estos comandos:
