@@ -70,7 +70,23 @@ Por otra parte, con los parámetros --p-trunc-len-f y --p-trunc-len-r, hemos ind
 
 ### 3. Importamos los datos de DADA2 a Qiime2
 
-Obtenidos los ficheros rep-seqs.qza, table.qza y stats.qza tras la ejecución de DADA2, vamos a importar estos datos a qiime2. Para ello, ejecutaremos los siguientes comandos en qiime2 a partir de los tres ficheros obtenidos tras la ejecución del protocolo del fichero dada.rmd aportado por el profesor, los cuales son rep-seqs.fna, seqtab-nochim y stats.txt:
+Obtenidos los ficheros rep-seqs.qza, table.qza y stats.qza tras la ejecución de DADA2, vamos a importar estos datos a qiime2. Para ello, podemos bien ejecutar los siguientes comandos para visualizar directamente dichos ficheros en view.qiime2.org:
+```
+qiime metadata tabulate \
+  --m-input-file stats.qza \
+  --o-visualization stats.qzv
+
+qiime feature-table summarize \
+  --i-table table.qza \
+  --o-visualization table.qzv \
+  --m-sample-metadata-file metadata
+
+qiime feature-table tabulate-seqs \
+  --i-data rep-seqs.qza \
+  --o-visualization rep-seqs.qzv
+```
+
+Sin embargo, también podríamos ejecutar los siguientes comandos en qiime2 a partir de los tres ficheros obtenidos tras la ejecución del protocolo del fichero dada.rmd aportado por el profesor, los cuales son rep-seqs.fna, seqtab-nochim y stats.txt:
 ```
 qiime tools import \
       --input-path rep-seqs.fna \
