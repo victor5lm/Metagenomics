@@ -52,7 +52,7 @@ Donde:
 * --o-table table.qza: nombre del fichero correspondiente a la tabla de abundancias de cada ASV por muestra.
 * --o-denoising-stats stats.qza: nombre del fichero que contiene información sobre la evolución del proceso.
 * --p-n-threads 7: número de procesos llevados a cabo en paralelo.
-* --p-n-reads-learn 1921748: número de secuencias usadas para determinar la tasa de error (en este caso, 1921748 es el 25% del número total de secuencias, 7686994, siendo éste un porcentaje adecuado).
+* --p-n-reads-learn 1921748: número de secuencias usadas para determinar la tasa de error (en este caso, 1921748 es el 25% del número total de secuencias, 7686994, siendo éste, por tanto, un porcentaje adecuado).
 
 Tal y como puede apreciarse, los valores de estos parámetros son correspondientes a los usados por el profesor cuando ejecutó este comando; esto es algo que podemos comprobar al abrir, por ejemplo, rep-seqs.qza en view.qiime2.org y pinchar en la pestaña "Provenance":
 
