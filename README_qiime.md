@@ -98,7 +98,7 @@ Con el comando anterior, hemos transformado los archivos relativos a las secuenc
 echo -n "#OTU Table" | cat - seqtab-nochim.txt > biom-table.txt
 biom convert -i biom-table.txt -o table.biom --table-type="OTU table" --to-hdf5
 ```
-Tras obtener table.biom que contiene la información organizada para qiime2, vamos a importar la tabla de ASVs en qiime2:
+Tras obtener table.biom, que contiene la información organizada para qiime2, vamos a importar la tabla de ASVs en qiime2:
 ```
 qiime tools import \
       --input-path table.biom \
@@ -117,7 +117,7 @@ qiime feature-table tabulate-seqs \
       --i-data rep-seqs.qza \
       --o-visualization rep-seqs.qzv
 ```
-Si echamos un vistazo a table.qzv, vemos que este archivo nos aporta información relativa al número de muestras, el número de features, cómo se distribuyen en función de las muestras, etc. Por su parte, rep-seqs.qzv nos permite conocer los IDs de los features, sus longitudes, sus secuencias, etc. 
+Si echamos un vistazo a table.qzv, vemos que este archivo nos aporta información relativa al número de muestras, el número de features, cómo se distribuyen en función de las muestras, etc. Por su parte, rep-seqs.qzv nos permite conocer los IDs de los features, sus longitudes, sus secuencias, etc. Respecto a stats.qzv, este fichero aporta información sobre cómo ha ido variando el número de secuencias asociado a cada muestra a lo largo de los distintos pasos de pre-procesado.
 
 ### 4. Determinación de las distancias filogenéticas por medio de MAFFT y FastTree
 
