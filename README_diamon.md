@@ -48,7 +48,7 @@ fastqc virome_qf.fq -o virome_qf_fastqc
 ```
 Obtenemos el siguiente resultado:
 
-![image](https://user-images.githubusercontent.com/98259577/166932402-a31f96e9-442f-49b4-97f3-48a60dab9177.png)
+![image](https://user-images.githubusercontent.com/98259577/167829767-dc93f86e-abaa-4b82-8e59-bc88cb19eb61.png)
 
 Como se puede apreciar, al igual que se mostró en la práctica anterior, este control de calidad resulta en una mejora considerable en la calidad de las lecturas globalmente.
 
@@ -57,17 +57,17 @@ Finalmente, tras el filtrado de calidad, vamos a eliminar posibles contaminacion
 for f in ./Index/*bt2; do ln -s $f .; done
 bowtie2 -x human-phix174 -q virome_qf.fq --un virome_qf_clean.fq -S tmp.sam
 ```
->141073 reads; of these:
+>176884 reads; of these:
 >
->141073 (100.00%) were unpaired; of these:
+>176884 (100.00%) were unpaired; of these:
 >
->140903 (99.88%) aligned 0 times
+>176684 (99.89%) aligned 0 times
 >
->162 (0.11%) aligned exactly 1 time
+>190 (0.11%) aligned exactly 1 time
 >
->8 (0.01%) aligned >1 times
+>10 (0.01%) aligned >1 times
 >
->0.12% overall alignment rate
+>0.11% overall alignment rate
 
 Podemos apreciar, en base a estos resultados, que apenas existen contaminaciones entre nuestras lecturas.
 
@@ -102,11 +102,11 @@ A continuación, ejecutamos DIAMOND para el alineamiento de las lecturas frente 
 ```
 diamond blastx -d viralproteins.dmnd -q virome_qf_clean.fq -o virome_qf_clean_vs_viralprotein.m8
 ```
->Total time = 16.779s
+>Total time = 20.428s
 >
->Reported 347842 pairwise alignments, 347842 HSPs.  
+>Reported 386316 pairwise alignments, 386316 HSPs.  
 >
->34649 queries aligned.
+>38927 queries aligned.
 
 Tras el alineamiento, podemos echar un vistazo al resultado obtenido:
 ```
