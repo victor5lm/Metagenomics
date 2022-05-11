@@ -52,7 +52,7 @@ Obtenemos el siguiente resultado:
 
 Como se puede apreciar, al igual que se mostró en la práctica anterior, este control de calidad resulta en una mejora considerable en la calidad de las lecturas globalmente.
 
-Finalmente, tras el filtrado de calidad, vamos a eliminar posibles contaminaciones del fichero virome.fq por medio de bowtie2:
+Finalmente, tras el filtrado de calidad, vamos a eliminar posibles contaminaciones del fichero virome_qf.fq por medio de bowtie2:
 ```
 for f in ./Index/*bt2; do ln -s $f .; done
 bowtie2 -x human-phix174 -q virome_qf.fq --un virome_qf_clean.fq -S tmp.sam
@@ -172,7 +172,7 @@ Tras pulsar en "Apply", obtenemos el siguiente resultado:
 
 ![image](https://user-images.githubusercontent.com/98259577/166731863-9374c8de-5885-4376-bf72-4a1335f4a2bd.png)
 
-A continuación, lo que realmente nos interesa es conocer la composición taxonómica de nuestras lecturas (ya pre-procesadas para quedarnos solamente con las de buena calidad) a nivel de familia, algo que podemos conseguir por medio de los siguientes pasos:
+A continuación, lo que realmente nos interesa es conocer la composición taxonómica de nuestras lecturas (ya pre-procesadas y descontaminadas para quedarnos solamente con las de buena calidad) a nivel de familia, algo que podemos conseguir por medio de los siguientes pasos:
 1. En "Tree"->"Rank", indicamos como nivel taxonómico "Family".
 2. En "Tree", hacemos click en "Show number of summarized".
 3. En "Options", hacemos click en "Change LCA Parameters", tras lo cual indicamos como minimal score=60, max e-value=10e-10 y min complexity=0.5, con el fin de reducir falsos positivos.
