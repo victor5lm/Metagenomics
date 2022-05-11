@@ -33,13 +33,13 @@ cat virome_R1.fastq virome_R2.fastq > virome.fq
 ```
 Tras esto, vamos a llevar a cabo el filtrado de las lecturas en base a su calidad por medio de Trimmomatic, utilizando los parámetros que demostraron ser más adecuados en la práctica anterior:
 ```
-trimmomatic SE -phred33 virome.fq virome_qf.fq SLIDINGWINDOW:4:20 MINLEN:149
+trimmomatic SE -phred33 virome.fq virome_qf.fq SLIDINGWINDOW:4:20 MINLEN:70
 ```
 >Input Reads: 200000
 >
->Surviving: 141073 (70.54%) 
+>Surviving: 176884 (88.44%) 
 >
->Dropped: 58927 (29.46%)
+>Dropped: 23116 (11.56%)
 
 A continuación, evaluamos visualmente la calidad de las lecturas tras el filtrado con *Trimmomatic*, por medio de FASTQC:
 ```
