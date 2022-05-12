@@ -119,7 +119,7 @@ qiime feature-table tabulate-seqs \
 ```
 Si echamos un vistazo a table.qzv, vemos que este archivo nos aporta información relativa al número de muestras, el número de features, cómo se distribuyen en función de las muestras, etc. Por su parte, rep-seqs.qzv nos permite conocer los IDs de los features, sus longitudes, sus secuencias, etc. Respecto a stats.qzv, este fichero aporta información sobre cómo ha ido variando el número de secuencias asociado a cada muestra a lo largo de los distintos pasos de pre-procesado.
 
-A continuación, vamos a construir el árbol filogenético relativo a las secuencias representativas. No se ha realizado, por tanto, el paso de eliminación de los *singletons* y de los ASVs de baja frecuencia ya que, por ejemplo, para el fichero table.qza, lo que se observa como último recuadro en la pestaña "Provenance" en view.qiiem2.org es lo siguiente:
+A continuación, vamos a construir el árbol filogenético relativo a las secuencias representativas. Cabe puntualizar, por tanto, que no se ha llevado a cabo el paso de eliminación de los *singletons* y de los ASVs de baja frecuencia ya que, por ejemplo, para el fichero table.qza, lo que se observa como último recuadro en la pestaña "Provenance" en view.qiiem2.org es lo siguiente:
 
 ![image](https://user-images.githubusercontent.com/98259577/168052259-052a7e4c-cb0f-4af8-9821-fffdfc410611.png)
 
